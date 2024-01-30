@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://lwfdcy1kkh8n"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/ChargerEnemy.gd" id="1_1off3"]
+[ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_aseoq"]
+[ext_resource type="PackedScene" uid="uid://b72elkpu22b2g" path="res://Scenes/EntityComponents/EntityHealthComponent.tscn" id="3_gdiap"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jiiep"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5424l"]
+size = Vector2(76, 70)
+
+[node name="ChargerEnemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_1off3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.278431, 0.278431, 0.278431, 1)
+scale = Vector2(0.484375, 0.484375)
+texture = ExtResource("2_aseoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jiiep")
+
+[node name="EntityHealthComponent" parent="." instance=ExtResource("3_gdiap")]
+
+[node name="playerArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerArea"]
+shape = SubResource("RectangleShape2D_5424l")

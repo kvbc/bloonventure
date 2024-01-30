@@ -50,11 +50,17 @@ func _input(event):
 				ALGlobal.World.Player.SetWeapon("Shotgun")
 
 func GameOver(reason: String):
+	var dist_traveled = int(ALGlobal.World.DistanceTraveled)
+	var dist_travel_str = ""
+	if dist_traveled > 1000:
+		dist_travel_str += str(dist_traveled / 1000) + "km "
+	dist_travel_str += str(dist_traveled % 1000) + "m"
+	
 	$GameOver.visible = true
 	%ReasonLabel.text = reason
 	%DescriptionLabel.text = "[center]"
 	%DescriptionLabel.text += "\n\n\n\n"
 	%DescriptionLabel.text += "Survived for: [color=gold]" + "%dh %dm %ds" % [hour, minute, second] + "[/color]"
 	%DescriptionLabel.text += "\nEnemies killed: [color=gold]" + str(ALGlobal.World.EnemiesKilled) + "[/color]"
-	%DescriptionLabel.text += "\nDistance traveled: [color=gold]" + str(int(ALGlobal.World.DistanceTraveled)) + "m[/color]"
+	%DescriptionLabel.text += "\nDistance traveled: [color=gold]" + dist_travel_str + "[/color]"
 	%DescriptionLabel.text += "[/center]"

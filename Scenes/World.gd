@@ -72,6 +72,35 @@ var Stats = {
 	}
 }
 
+func GetStatValue(stat_name: String):
+	var stat = ALGlobal.World.Stats[stat_name]
+	var value = stat.BaseValue
+	for i in stat.Level:
+		value += stat.BaseValue * stat.ValueMultiplier
+	return value
+
+func UpgradeStat(stat_name: String):
+	Stats[stat_name].Level += 1
+	var value = GetStatValue(stat_name)
+	
+	match stat_name:
+		"MaxHP":
+			var ehc = Player.get_node("EntityHealthComponent")
+			ehc.Health += value - ehc.MaxHealth
+			ehc.MaxHealth = value
+		"HPRegen":
+			pass # handled in Player.gd
+		"DMGMulti":
+			pass # handled in player bullet
+		"MoveSpeed":
+			pass # handled in player
+		"ATKSpeed":
+			pass # handled in player
+		"BulletSpeed":
+			pass # handled in bullet
+		_:
+			assert(false, "wtf brah")
+
 func _process(delta):
 	DistanceTraveled += delta * BG_SPEED / 10
 	for bg: Sprite2D in backgrounds.get_children():
@@ -96,6 +125,13 @@ func _ready():
 			var bg: Sprite2D = background.duplicate()
 			bg.position = background.position + Vector2(background.texture.get_size().x  * background.scale.x, 0) * i * j
 			background.get_parent().add_child(bg)
+			
+	for bg in backgrounds.get_children():
+		var area: Area2D = bg.get_node("dedArea")
+		area.body_entered.connect(func(body):
+			assert(body is Balloon)
+			GameOver("your bloon sank!")
+		)
 
 func GameOver(reason: String):
 	$UI.GameOver(reason)

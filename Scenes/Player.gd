@@ -24,6 +24,15 @@ func _ready():
 		if area is Candle:
 			area.SetCanInteract(false)
 	)
+	
+	var hpregen_timer = Timer.new()
+	hpregen_timer.wait_time = 1
+	hpregen_timer.autostart = true
+	hpregen_timer.timeout.connect(func():
+		var ehc = $EntityHealthComponent
+		ehc.Health += ALGlobal.World.GetStatValue("HPRegen")
+	)
+	add_child(hpregen_timer)
 
 func _process(delta):
 	weapon.look_at(get_global_mouse_position())
@@ -45,9 +54,10 @@ func _physics_process(delta):
 		direction += Vector2.RIGHT
 	if Input.is_action_pressed("move_down"):
 		direction += Vector2.DOWN
+	var speed = SPEED * ALGlobal.World.GetStatValue("MoveSpeed")
 	if not direction.is_zero_approx():
-		velocity.x = direction.x * SPEED
+		velocity.x = direction.x * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()

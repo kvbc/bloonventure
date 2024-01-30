@@ -10,22 +10,25 @@ var last_fire_msec = Time.get_ticks_msec()
 func _ready():
 	z_index = 1
 
+func fire_delay_msec():
+	return FIRE_DELAY * 1000 / ALGlobal.World.GetStatValue("ATKSpeed")
+
 func _process(delta):
 	if visible:
 		var bar: ProgressBar = ALGlobal.World.Player.ReloadBar
 		var msec = Time.get_ticks_msec()
-		if msec - last_fire_msec >= FIRE_DELAY * 1000:
+		if msec - last_fire_msec >= fire_delay_msec():
 			bar.visible = false
 		else:
 			bar.visible = true
-			bar.value = (1 - (msec - last_fire_msec) / (FIRE_DELAY * 1000.0)) * bar.max_value
+			bar.value = (1 - (msec - last_fire_msec) / fire_delay_msec()) * bar.max_value
 
 func Fire():
 	var msec = Time.get_ticks_msec()
-	if msec - last_fire_msec >= FIRE_DELAY * 1000:
+	if msec - last_fire_msec >= fire_delay_msec():
 		last_fire_msec = msec
 		for angle in [-15, 0, 15]:
 			var bullet = preload("res://Scenes/Bullets/PlayerBullet.tscn").instantiate()
 			bullet.global_position = global_position
-			bullet.velocity = Vector2.RIGHT.rotated(global_rotation + deg_to_rad(angle)) * BULLET_SPEED
+			bullet.velocity = Vector2.RIGHT.rotated(global_rotation + deg_to_rad(angle)) * BULLET_SPEED * ALGlobal.World.GetStatValue("BulletSpeed")
 			get_tree().current_scene.add_child(bullet)

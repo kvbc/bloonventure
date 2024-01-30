@@ -43,7 +43,8 @@ func update_stat(stat_name: String):
 	var button_con = func():
 		if ALGlobal.World.Currency >= cost:
 			ALGlobal.World.Currency -= cost
-			stat.Level += 1
+			# stat.Level += 1
+			ALGlobal.World.UpgradeStat(stat_name)
 			update_stats()
 	
 	if button.has_meta("con"):

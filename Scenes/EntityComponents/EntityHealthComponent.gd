@@ -6,7 +6,7 @@ class_name EntityHealthComponent
 var Health = 100:
 	set(v):
 		if v < Health:
-			if(get_parent() is ShooterEnemy):
+			if(get_parent() is Enemy):
 				ALGlobal.PlayAudio(preload("res://Assets/SFX/EnemyHurt.wav"))
 			elif(get_parent() is Player):
 				ALGlobal.PlayAudio(preload("res://Assets/SFX/PlayerHurt.wav"))
@@ -16,7 +16,7 @@ var Health = 100:
 		Health = v
 		bar.value = v
 		if v <= 0:
-			if(get_parent() is ShooterEnemy):
+			if(get_parent() is Enemy):
 				ALGlobal.World.EnemiesKilled += 1
 				ALGlobal.World.AddCurrency(5)
 			

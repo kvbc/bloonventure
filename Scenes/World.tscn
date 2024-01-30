@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://c6n1nv4ue3m28"]
+[gd_scene load_steps=21 format=3 uid="uid://c6n1nv4ue3m28"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
 [ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
 [ext_resource type="PackedScene" uid="uid://dcdm6e0oma3o0" path="res://Scenes/Balloon.tscn" id="3_rg2om"]
 [ext_resource type="PackedScene" uid="uid://dyqc1r27twitx" path="res://Scenes/Player.tscn" id="4_demyx"]
+[ext_resource type="PackedScene" uid="uid://lwfdcy1kkh8n" path="res://Scenes/Enemies/ChargerEnemy.tscn" id="6_ljt8q"]
 [ext_resource type="Texture2D" uid="uid://dlwwo6tne67et" path="res://Assets/Image/Currency.png" id="7_2ytqu"]
 [ext_resource type="Script" path="res://Scenes/Currency.gd" id="7_hxbw8"]
 [ext_resource type="PackedScene" uid="uid://ohjxlrcxtpbm" path="res://Scenes/Enemies/ShooterEnemy.tscn" id="7_m46d3"]
@@ -17,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://c5dmujjuo3igp" path="res://Assets/Image/MoveSpeed.png" id="12_t4og6"]
 [ext_resource type="Texture2D" uid="uid://dt86yyai5oewc" path="res://Assets/Image/AttackSpeed.png" id="13_l3kji"]
 [ext_resource type="Texture2D" uid="uid://d2kge6lv6v3ps" path="res://Assets/Image/BulletSpeed.png" id="14_fnae8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ijlh"]
+size = Vector2(126.638, 6.4788)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ki4k0"]
 font_size = 32
@@ -44,13 +48,34 @@ position = Vector2(224, 301.5)
 scale = Vector2(3.67188, 5.71094)
 texture = ExtResource("2_nf8dn")
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="dedArea" type="Area2D" parent="Backgrounds/Background"]
+collision_layer = 0
+collision_mask = 16
 
-[node name="ShooterEnemy" parent="Enemies" instance=ExtResource("7_m46d3")]
-position = Vector2(-256, 233)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background/dedArea"]
+position = Vector2(0.680859, 61.9863)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_7ijlh")
+
+[node name="Enemies" type="Node2D" parent="."]
 
 [node name="ShooterEnemy2" parent="Enemies" instance=ExtResource("7_m46d3")]
 position = Vector2(705, 187)
+
+[node name="ShooterEnemy3" parent="Enemies" instance=ExtResource("7_m46d3")]
+position = Vector2(705, 324)
+
+[node name="ShooterEnemy4" parent="Enemies" instance=ExtResource("7_m46d3")]
+position = Vector2(694, 491)
+
+[node name="ShooterEnemy5" parent="Enemies" instance=ExtResource("7_m46d3")]
+position = Vector2(-262, 367)
+
+[node name="ShooterEnemy6" parent="Enemies" instance=ExtResource("7_m46d3")]
+position = Vector2(-245, 491)
+
+[node name="ChargerEnemy" parent="Enemies" instance=ExtResource("6_ljt8q")]
+position = Vector2(-256, 150)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("8_vfjgm")

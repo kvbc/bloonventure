@@ -1,5 +1,4 @@
-extends Node2D
-class_name ShooterEnemy
+extends Enemy
 
 const BULLET_SPEED = 200
 const FIRE_DELAY = 2.5
@@ -16,3 +15,8 @@ func _ready():
 			get_tree().current_scene.add_child(bullet)
 	)
 	add_child(timer)
+
+	$playerArea.body_entered.connect(func(body):
+		if body is Player:
+			body.get_node("EntityHealthComponent").Health -= 25
+	)
