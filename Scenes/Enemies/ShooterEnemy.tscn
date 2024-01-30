@@ -24,6 +24,7 @@ texture = ExtResource("1_ga1ry")
 shape = SubResource("RectangleShape2D_jiiep")
 
 [node name="EntityHealthComponent" parent="." instance=ExtResource("3_ycl5k")]
+position = Vector2(0, -11)
 
 [node name="playerArea" type="Area2D" parent="."]
 collision_layer = 0

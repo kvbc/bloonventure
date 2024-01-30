@@ -22,6 +22,6 @@ func _ready():
 	
 	$playerArea.body_entered.connect(func(body):
 		if body is Player:
-			body.get_node("EntityHealthComponent").Health -= 25
-			body.velocity += velocity
+			body.get_node("EntityHealthComponent").Health -= 15
+			body.AddVelocity(velocity)
 	)

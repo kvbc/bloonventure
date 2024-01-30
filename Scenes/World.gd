@@ -15,6 +15,8 @@ var Currency = 0
 @onready var Player: Player = $Player
 @onready var Balloon: Balloon = $Balloon
 
+var last_spawned_meteor_msec = Time.get_ticks_msec()
+
 var Stats = {
 	"MaxHP" = {
 		Name = "Max HP",
@@ -117,6 +119,17 @@ func _process(delta):
 
 		var dy = (1 if GoingDown else -1) * delta * BG_Y_SPEED
 		bg.position.y += dy
+		
+	if Player.global_position.y < %MeteorSpawnPoint.global_position.y:
+		var msec = Time.get_ticks_msec()
+		if (msec - last_spawned_meteor_msec) >= 3000:
+			last_spawned_meteor_msec = msec
+			var meteor = preload("res://Scenes/Meteor.tscn").instantiate()
+			meteor.global_position = Vector2(
+				Player.global_position.x + [-2000, 2000][randi_range(0,1)],
+				Player.global_position.y - randf_range(100,300)
+			)
+			add_child(meteor)
 
 func _ready():
 	ALGlobal.World = self

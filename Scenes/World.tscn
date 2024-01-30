@@ -57,6 +57,11 @@ position = Vector2(0.680859, 61.9863)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7ijlh")
 
+[node name="MeteorSpawnPoint" type="Marker2D" parent="Backgrounds/Background"]
+unique_name_in_owner = true
+position = Vector2(9.80424, -63.8249)
+scale = Vector2(0.27234, 0.175103)
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="ShooterEnemy2" parent="Enemies" instance=ExtResource("7_m46d3")]
