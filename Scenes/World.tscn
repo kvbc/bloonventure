@@ -1,0 +1,137 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6n1nv4ue3m28"]
+
+[ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
+[ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
+[ext_resource type="PackedScene" uid="uid://dcdm6e0oma3o0" path="res://Scenes/Balloon.tscn" id="3_rg2om"]
+[ext_resource type="PackedScene" uid="uid://dyqc1r27twitx" path="res://Scenes/Player.tscn" id="4_demyx"]
+[ext_resource type="PackedScene" uid="uid://ohjxlrcxtpbm" path="res://Scenes/Enemies/ShooterEnemy.tscn" id="7_m46d3"]
+[ext_resource type="AudioStream" uid="uid://br83eluw3ngv8" path="res://Assets/Music/InGame.wav" id="7_p0ws8"]
+[ext_resource type="Script" path="res://Scenes/UI.gd" id="8_vfjgm"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_d6njh")
+
+[node name="Balloon" parent="." instance=ExtResource("3_rg2om")]
+position = Vector2(243, 172)
+
+[node name="Player" parent="." instance=ExtResource("4_demyx")]
+position = Vector2(246, 264)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Backgrounds" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="Sprite2D" parent="Backgrounds"]
+unique_name_in_owner = true
+self_modulate = Color(0.235294, 0.235294, 0.235294, 0.152941)
+position = Vector2(224, 301.5)
+scale = Vector2(3.67188, 5.71094)
+texture = ExtResource("2_nf8dn")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="ShooterEnemy" parent="Enemies" instance=ExtResource("7_m46d3")]
+position = Vector2(-256, 233)
+
+[node name="ShooterEnemy2" parent="Enemies" instance=ExtResource("7_m46d3")]
+position = Vector2(705, 187)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("8_vfjgm")
+
+[node name="TimeLabel" type="Label" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponSlots" type="HBoxContainer" parent="UI"]
+custom_minimum_size = Vector2(0, 75)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Gun" type="Button" parent="UI/WeaponSlots"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "1"
+icon = ExtResource("2_nf8dn")
+expand_icon = true
+
+[node name="Shotgun" type="Button" parent="UI/WeaponSlots"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "2"
+icon = ExtResource("2_nf8dn")
+expand_icon = true
+
+[node name="GameOver" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -198.0
+offset_right = 208.0
+offset_bottom = 198.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOver/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/GameOver/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReasonLabel" type="Label" parent="UI/GameOver/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.811765, 0.811765, 0.811765, 1)
+text = "[reason]"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="UI/GameOver/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "this is a description"
+
+[node name="MainMenuButton" type="Button" parent="UI/GameOver/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_p0ws8")
+autoplay = true

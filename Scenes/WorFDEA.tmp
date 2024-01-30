@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6n1nv4ue3m28"]
+
+[ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
+[ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
+[ext_resource type="PackedScene" uid="uid://dcdm6e0oma3o0" path="res://Scenes/Balloon.tscn" id="3_rg2om"]
+[ext_resource type="PackedScene" uid="uid://dyqc1r27twitx" path="res://Scenes/Player.tscn" id="4_demyx"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_d6njh")
+
+[node name="Background" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0.235294, 0.235294, 0.235294, 0.152941)
+position = Vector2(224, 301.5)
+scale = Vector2(3.67188, 5.71094)
+texture = ExtResource("2_nf8dn")
+
+[node name="Balloon" parent="." instance=ExtResource("3_rg2om")]
+position = Vector2(243, 172)
+
+[node name="Player" parent="." instance=ExtResource("4_demyx")]
+position = Vector2(246, 264)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]

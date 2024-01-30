@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcdm6e0oma3o0"]
+
+[ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="1_caf5o"]
+[ext_resource type="Script" path="res://Scenes/Balloon.gd" id="1_pthr5"]
+[ext_resource type="Script" path="res://Scenes/Candle.gd" id="2_le14k"]
+[ext_resource type="Script" path="res://addons/controller_icons/objects/Sprite.gd" id="3_2tvjg"]
+[ext_resource type="Texture2D" uid="uid://xe4n818le3p8" path="res://addons/controller_icons/assets/key/e.png" id="3_dnlj3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1wrc"]
+size = Vector2(130, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ab1sy"]
+radius = 66.0303
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghbuc"]
+size = Vector2(28, 52)
+
+[node name="Balloon" type="CharacterBody2D"]
+script = ExtResource("1_pthr5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.219608, 1, 0.211765, 0.498039)
+position = Vector2(2, 46.5)
+scale = Vector2(1.03125, 1.72656)
+texture = ExtResource("1_caf5o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 142)
+shape = SubResource("RectangleShape2D_e1wrc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("CircleShape2D_ab1sy")
+
+[node name="Candle" type="Area2D" parent="."]
+position = Vector2(0, 105)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_le14k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Candle"]
+shape = SubResource("RectangleShape2D_ghbuc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Candle"]
+scale = Vector2(0.15625, 0.34375)
+texture = ExtResource("1_caf5o")
+
+[node name="InteractSprite" type="Sprite2D" parent="Candle"]
+visible = false
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("3_dnlj3")
+script = ExtResource("3_2tvjg")
+path = "interact"
