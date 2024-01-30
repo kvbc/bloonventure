@@ -11,8 +11,66 @@ const BG_Y_SPEED = 50
 var GoingDown = false
 var EnemiesKilled = 0
 var DistanceTraveled = 0
+var Currency = 0
 @onready var Player: Player = $Player
 @onready var Balloon: Balloon = $Balloon
+
+var Stats = {
+	"MaxHP" = {
+		Name = "Max HP",
+		ValueFormat = "%d",
+		BaseValue = 100,
+		BaseCost = 10,
+		Level = 0,
+		ValueMultiplier = 1.25,
+		CostMultiplier = 1.25
+	},
+	"HPRegen" = {
+		Name = "HP Regen",
+		ValueFormat = "%d/s",
+		BaseValue = 1,
+		BaseCost = 10,
+		Level = 0,
+		ValueMultiplier = 1.25,
+		CostMultiplier = 1.25
+	},
+	"DMGMulti" = {
+		Name = "DMG Mult.",
+		ValueFormat = "%dx",
+		BaseValue = 1,
+		BaseCost = 10,
+		Level = 0,
+		ValueMultiplier = 1.25,
+		CostMultiplier = 1.25
+	},
+	"MoveSpeed" = {
+		Name = "Move Speed",
+		ValueFormat = "%dx",
+		BaseValue = 1,
+		BaseCost = 10,
+		Level = 0,
+		ValueMultiplier = 1.25,
+		CostMultiplier = 1.25
+	},
+	"ATKSpeed" = {
+		Name = "ATK Speed",
+		ValueFormat = "%dx",
+		BaseValue = 1,
+		BaseCost = 10,
+		Level = 0,
+		ValueMultiplier = 1.25,
+		CostMultiplier = 1.25
+	},
+	"BulletSpeed" = {
+		Name = "Bullet Speed",
+		ValueFormat = "%dx",
+		BaseValue = 1,
+		BaseCost = 10,
+		Level = 0,
+		ValueMultiplier = 1.25,
+		CostMultiplier = 1.25
+	}
+}
 
 func _process(delta):
 	DistanceTraveled += delta * BG_SPEED / 10
@@ -42,3 +100,6 @@ func _ready():
 func GameOver(reason: String):
 	$UI.GameOver(reason)
 	get_tree().paused = true
+
+func AddCurrency(currency: int):
+	Currency += currency

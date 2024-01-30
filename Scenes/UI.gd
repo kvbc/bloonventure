@@ -14,11 +14,21 @@ func _ready():
 	)
 	add_child(timer)
 
+	%Shop.visible = false
+	%Shop.process_mode = Node.PROCESS_MODE_ALWAYS
 	$GameOver.process_mode = Node.PROCESS_MODE_ALWAYS
 	$GameOver.visible = false
 	$GameOver/MarginContainer/VBoxContainer/MainMenuButton.pressed.connect(func():
 		get_tree().paused = false
 		get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+	)
+	$ShopButton.pressed.connect(func():
+		%Shop.visible = true
+		get_tree().paused = true
+	)
+	%ShopCloseButton.pressed.connect(func():
+		get_tree().paused = false
+		%Shop.visible = false
 	)
 
 func _process(delta):

@@ -1,12 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6n1nv4ue3m28"]
+[gd_scene load_steps=19 format=3 uid="uid://c6n1nv4ue3m28"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
 [ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
 [ext_resource type="PackedScene" uid="uid://dcdm6e0oma3o0" path="res://Scenes/Balloon.tscn" id="3_rg2om"]
 [ext_resource type="PackedScene" uid="uid://dyqc1r27twitx" path="res://Scenes/Player.tscn" id="4_demyx"]
+[ext_resource type="Texture2D" uid="uid://dlwwo6tne67et" path="res://Assets/Image/Currency.png" id="7_2ytqu"]
+[ext_resource type="Script" path="res://Scenes/Currency.gd" id="7_hxbw8"]
 [ext_resource type="PackedScene" uid="uid://ohjxlrcxtpbm" path="res://Scenes/Enemies/ShooterEnemy.tscn" id="7_m46d3"]
 [ext_resource type="AudioStream" uid="uid://br83eluw3ngv8" path="res://Assets/Music/InGame.wav" id="7_p0ws8"]
+[ext_resource type="Texture2D" uid="uid://upecpay7xks0" path="res://Assets/Image/Shop.png" id="8_2hpou"]
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="8_vfjgm"]
+[ext_resource type="Script" path="res://Scenes/ShopStats.gd" id="9_ocho8"]
+[ext_resource type="Texture2D" uid="uid://ckq5xrgni0hla" path="res://Assets/Image/MaxHP.png" id="9_vr6v8"]
+[ext_resource type="Texture2D" uid="uid://dxklf47q4600u" path="res://Assets/Image/HPRegen.png" id="10_xs6hj"]
+[ext_resource type="Texture2D" uid="uid://jcsn4vou43rd" path="res://Assets/Image/DamageMultiplier.png" id="11_knmww"]
+[ext_resource type="Texture2D" uid="uid://c5dmujjuo3igp" path="res://Assets/Image/MoveSpeed.png" id="12_t4og6"]
+[ext_resource type="Texture2D" uid="uid://dt86yyai5oewc" path="res://Assets/Image/AttackSpeed.png" id="13_l3kji"]
+[ext_resource type="Texture2D" uid="uid://d2kge6lv6v3ps" path="res://Assets/Image/BulletSpeed.png" id="14_fnae8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ki4k0"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_d6njh")
@@ -132,6 +147,406 @@ text = "this is a description"
 layout_mode = 2
 text = "Back to menu"
 
+[node name="Currency" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 294.0
+offset_bottom = 44.0
+script = ExtResource("7_hxbw8")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Currency"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Currency/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Currency/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_2ytqu")
+expand_mode = 2
+
+[node name="CurrencyLabel" type="Label" parent="UI/Currency/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "123"
+
+[node name="ShopButton" type="Button" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_bottom = 56.0
+grow_horizontal = 0
+icon = ExtResource("8_2hpou")
+flat = true
+expand_icon = true
+
+[node name="Shop" type="Panel" parent="UI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopCloseButton" type="Button" parent="UI/Shop/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 28
+text = "X"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Shop/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ShopStats" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("9_ocho8")
+
+[node name="MaxHP" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_vr6v8")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]Max HP
+100 >> [color=green]125[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "123"
+icon = ExtResource("7_2ytqu")
+expand_icon = true
+
+[node name="HPRegen" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_xs6hj")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]HP Regen
+1/s >> [color=green]2/s[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "123"
+icon = ExtResource("7_2ytqu")
+expand_icon = true
+
+[node name="DMGMulti" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_knmww")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]DMG Mult.
+1x >> [color=green]1.2x[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "123"
+icon = ExtResource("7_2ytqu")
+expand_icon = true
+
+[node name="MoveSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_t4og6")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]Move Speed
+1x >> [color=green]1.2x[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "123"
+icon = ExtResource("7_2ytqu")
+expand_icon = true
+
+[node name="ATKSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_l3kji")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]ATK Speed
+1x >> [color=green]1.2x[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "123"
+icon = ExtResource("7_2ytqu")
+expand_icon = true
+
+[node name="BulletSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("14_fnae8")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]Bullet Speed
+1x >> [color=green]1.2x[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "123"
+icon = ExtResource("7_2ytqu")
+expand_icon = true
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("7_p0ws8")
 autoplay = true

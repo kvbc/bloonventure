@@ -11,13 +11,14 @@ func _ready():
 	z_index = 1
 
 func _process(delta):
-	var bar: ProgressBar = ALGlobal.World.Player.ReloadBar
-	var msec = Time.get_ticks_msec()
-	if msec - last_fire_msec >= FIRE_DELAY * 1000:
-		bar.visible = false
-	else:
-		bar.visible = true
-		bar.value = (1 - (msec - last_fire_msec) / (FIRE_DELAY * 1000.0)) * bar.max_value
+	if visible:
+		var bar: ProgressBar = ALGlobal.World.Player.ReloadBar
+		var msec = Time.get_ticks_msec()
+		if msec - last_fire_msec >= FIRE_DELAY * 1000:
+			bar.visible = false
+		else:
+			bar.visible = true
+			bar.value = (1 - (msec - last_fire_msec) / (FIRE_DELAY * 1000.0)) * bar.max_value
 
 func Fire():
 	var msec = Time.get_ticks_msec()
