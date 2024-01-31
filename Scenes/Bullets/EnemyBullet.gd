@@ -14,5 +14,5 @@ func _physics_process(delta):
 		queue_free()
 
 func _ready():
-	ALGlobal.PlayAudio(preload("res://Assets/SFX/EnemyShoot.wav"))
+	ALGlobal.PlayAudio(preload("res://Assets/SFX/EnemyShoot.wav"), "SFX")
 	get_tree().create_timer(5).timeout.connect(queue_free)

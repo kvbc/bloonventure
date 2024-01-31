@@ -15,11 +15,6 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_1off3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.278431, 0.278431, 0.278431, 1)
-scale = Vector2(0.484375, 0.484375)
-texture = ExtResource("2_aseoq")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jiiep")
 
@@ -31,3 +26,8 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerArea"]
 shape = SubResource("RectangleShape2D_5424l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.278431, 0.278431, 0.278431, 1)
+scale = Vector2(0.484375, 0.484375)
+texture = ExtResource("2_aseoq")

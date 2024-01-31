@@ -9,12 +9,12 @@ size = Vector2(128, 120)
 [node name="Meteor" type="Node2D"]
 script = ExtResource("1_pxkwc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.701961, 0.4, 0.0666667, 1)
-texture = ExtResource("1_giug8")
-
 [node name="playerArea" type="Area2D" parent="."]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerArea"]
 shape = SubResource("RectangleShape2D_qq46s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.701961, 0.4, 0.0666667, 1)
+texture = ExtResource("1_giug8")

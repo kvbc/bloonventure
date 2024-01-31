@@ -1,34 +1,137 @@
-[gd_scene load_steps=21 format=3 uid="uid://c6n1nv4ue3m28"]
+[gd_scene load_steps=36 format=3 uid="uid://c6n1nv4ue3m28"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
 [ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
 [ext_resource type="PackedScene" uid="uid://dcdm6e0oma3o0" path="res://Scenes/Balloon.tscn" id="3_rg2om"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="4_afosw"]
 [ext_resource type="PackedScene" uid="uid://dyqc1r27twitx" path="res://Scenes/Player.tscn" id="4_demyx"]
-[ext_resource type="PackedScene" uid="uid://lwfdcy1kkh8n" path="res://Scenes/Enemies/ChargerEnemy.tscn" id="6_ljt8q"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_1krxd"]
+[ext_resource type="Texture2D" uid="uid://g1eqhjh7oldh" path="res://Assets/Image/new/background.png" id="6_36n6q"]
 [ext_resource type="Texture2D" uid="uid://dlwwo6tne67et" path="res://Assets/Image/Currency.png" id="7_2ytqu"]
 [ext_resource type="Script" path="res://Scenes/Currency.gd" id="7_hxbw8"]
-[ext_resource type="PackedScene" uid="uid://ohjxlrcxtpbm" path="res://Scenes/Enemies/ShooterEnemy.tscn" id="7_m46d3"]
 [ext_resource type="AudioStream" uid="uid://br83eluw3ngv8" path="res://Assets/Music/InGame.wav" id="7_p0ws8"]
-[ext_resource type="Texture2D" uid="uid://upecpay7xks0" path="res://Assets/Image/Shop.png" id="8_2hpou"]
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="8_vfjgm"]
 [ext_resource type="Script" path="res://Scenes/ShopStats.gd" id="9_ocho8"]
-[ext_resource type="Texture2D" uid="uid://ckq5xrgni0hla" path="res://Assets/Image/MaxHP.png" id="9_vr6v8"]
-[ext_resource type="Texture2D" uid="uid://dxklf47q4600u" path="res://Assets/Image/HPRegen.png" id="10_xs6hj"]
-[ext_resource type="Texture2D" uid="uid://jcsn4vou43rd" path="res://Assets/Image/DamageMultiplier.png" id="11_knmww"]
-[ext_resource type="Texture2D" uid="uid://c5dmujjuo3igp" path="res://Assets/Image/MoveSpeed.png" id="12_t4og6"]
-[ext_resource type="Texture2D" uid="uid://dt86yyai5oewc" path="res://Assets/Image/AttackSpeed.png" id="13_l3kji"]
-[ext_resource type="Texture2D" uid="uid://d2kge6lv6v3ps" path="res://Assets/Image/BulletSpeed.png" id="14_fnae8"]
+[ext_resource type="Texture2D" uid="uid://bnl8v2tpsn352" path="res://Assets/Image/fightFist.png" id="9_wv3kb"]
+[ext_resource type="Texture2D" uid="uid://b36jjuamrcidm" path="res://Assets/Image/musicOn.png" id="11_sov7a"]
+[ext_resource type="Texture2D" uid="uid://b5jdk4acvfmxn" path="res://Assets/Image/audioOn.png" id="11_wsnrq"]
+[ext_resource type="Texture2D" uid="uid://qx841qlk7qm6" path="res://Assets/Image/question.png" id="12_nv1pe"]
+[ext_resource type="StyleBox" uid="uid://cq850jfy2vj27" path="res://Styles/Panel.tres" id="13_tbnb4"]
+[ext_resource type="Texture2D" uid="uid://b6bgutohhcokv" path="res://Assets/Image/JumpHeight.png" id="16_1vbcl"]
+[ext_resource type="Texture2D" uid="uid://dxiortvuvp1in" path="res://Assets/Image/new/heart.png" id="18_2dsgo"]
+[ext_resource type="Texture2D" uid="uid://batlyad6jckle" path="res://Assets/Image/JPFuelCap.png" id="18_xg63x"]
+[ext_resource type="Texture2D" uid="uid://6uuwix2pi0cl" path="res://Assets/Image/new/heartregeneration.png" id="19_irsjf"]
+[ext_resource type="Texture2D" uid="uid://umfkboy3cdnm" path="res://Assets/Image/JPSpeed.png" id="19_jntit"]
+[ext_resource type="Texture2D" uid="uid://c8olr4mp3uwak" path="res://Assets/Image/new/dmg.png" id="20_4voqk"]
+[ext_resource type="Texture2D" uid="uid://fqg4i5gj0dk7" path="res://Assets/Image/JPRegen.png" id="21_0gftb"]
+[ext_resource type="Texture2D" uid="uid://cqykxworvebsx" path="res://Assets/Image/new/speed.png" id="21_w0e2i"]
+[ext_resource type="Texture2D" uid="uid://cgkgch5q5myal" path="res://Assets/Image/new/dmgspeed.png" id="23_cj31i"]
+[ext_resource type="Script" path="res://Scenes/HelpMenu.gd" id="24_d7w0a"]
+[ext_resource type="Texture2D" uid="uid://4vovggsl3ain" path="res://Assets/Image/new/bullet speed.png" id="24_pm8gn"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_d66o5"]
+[ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="30_qigw3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ijlh"]
-size = Vector2(126.638, 6.4788)
+size = Vector2(301.208, 21.7127)
+
+[sub_resource type="Resource" id="Resource_w5e61"]
+script = ExtResource("5_1krxd")
+duration = 1.0
+transition = 0
+ease = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_ki4k0"]
 font_size = 32
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="SystemFont" id="SystemFont_4f14d"]
+font_names = PackedStringArray("Consolas")
+
+[sub_resource type="Curve" id="Curve_j66mb"]
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_d6njh")
+
+[node name="Backgrounds" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="Sprite2D" parent="Backgrounds"]
+unique_name_in_owner = true
+modulate = Color(0.858824, 0.858824, 0.858824, 1)
+texture_filter = 1
+position = Vector2(556, -635)
+scale = Vector2(3.67188, 5.71094)
+texture = ExtResource("6_36n6q")
+
+[node name="dedArea" type="Area2D" parent="Backgrounds/Background"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background/dedArea"]
+position = Vector2(-0.817017, 212.75)
+shape = SubResource("RectangleShape2D_7ijlh")
+
+[node name="MeteorSpawnPoint" type="Marker2D" parent="Backgrounds/Background"]
+unique_name_in_owner = true
+position = Vector2(28.5957, 0)
+scale = Vector2(0.27234, 0.175103)
+
+[node name="BloonDiePoint" type="Marker2D" parent="Backgrounds/Background"]
+unique_name_in_owner = true
+position = Vector2(8.1702, -139.732)
+scale = Vector2(0.27234, 0.175103)
+
+[node name="water" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, 232.361)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(-6, 431, 306, 19)
+metadata/_edit_group_ = true
+
+[node name="water2" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, 250.747)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(-6, 431, 306, 19)
+metadata/_edit_group_ = true
+
+[node name="water3" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, 267.031)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(-6, 431, 306, 19)
+metadata/_edit_group_ = true
+
+[node name="water4" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, 284.191)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(-6, 431, 306, 19)
+metadata/_edit_group_ = true
+
+[node name="water5" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, 303.147)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(-6, 431, 306, 19)
+metadata/_edit_group_ = true
+
+[node name="water6" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, 320.263)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(-6, 431, 306, 19)
+metadata/_edit_group_ = true
 
 [node name="Balloon" parent="." instance=ExtResource("3_rg2om")]
 position = Vector2(243, 172)
@@ -36,51 +139,29 @@ position = Vector2(243, 172)
 [node name="Player" parent="." instance=ExtResource("4_demyx")]
 position = Vector2(246, 264)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="Backgrounds" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Background" type="Sprite2D" parent="Backgrounds"]
-unique_name_in_owner = true
-self_modulate = Color(0.235294, 0.235294, 0.235294, 0.152941)
-position = Vector2(224, 301.5)
-scale = Vector2(3.67188, 5.71094)
-texture = ExtResource("2_nf8dn")
-
-[node name="dedArea" type="Area2D" parent="Backgrounds/Background"]
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Backgrounds/Background/dedArea"]
-position = Vector2(0.680859, 61.9863)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_7ijlh")
-
-[node name="MeteorSpawnPoint" type="Marker2D" parent="Backgrounds/Background"]
-unique_name_in_owner = true
-position = Vector2(9.80424, -63.8249)
-scale = Vector2(0.27234, 0.175103)
+[node name="PhantomCamera2D" type="Node2D" parent="Player"]
+script = ExtResource("4_afosw")
+priority_override = false
+priority = 5
+zoom = Vector2(1, 1)
+follow_mode = 2
+follow_target = NodePath("..")
+follow_parameters/target_offset = Vector2(0, 0)
+follow_parameters/damping = false
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = false
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_w5e61")
+tween_on_load = true
+inactive_update_mode = 0
 
 [node name="Enemies" type="Node2D" parent="."]
-
-[node name="ShooterEnemy2" parent="Enemies" instance=ExtResource("7_m46d3")]
-position = Vector2(705, 187)
-
-[node name="ShooterEnemy3" parent="Enemies" instance=ExtResource("7_m46d3")]
-position = Vector2(705, 324)
-
-[node name="ShooterEnemy4" parent="Enemies" instance=ExtResource("7_m46d3")]
-position = Vector2(694, 491)
-
-[node name="ShooterEnemy5" parent="Enemies" instance=ExtResource("7_m46d3")]
-position = Vector2(-262, 367)
-
-[node name="ShooterEnemy6" parent="Enemies" instance=ExtResource("7_m46d3")]
-position = Vector2(-245, 491)
-
-[node name="ChargerEnemy" parent="Enemies" instance=ExtResource("6_ljt8q")]
-position = Vector2(-256, 150)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("8_vfjgm")
@@ -109,15 +190,22 @@ alignment = 1
 [node name="Gun" type="Button" parent="UI/WeaponSlots"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-text = "1"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+text = " 1"
 icon = ExtResource("2_nf8dn")
+flat = true
+icon_alignment = 2
 expand_icon = true
 
 [node name="Shotgun" type="Button" parent="UI/WeaponSlots"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-text = "2"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+text = " 2"
 icon = ExtResource("2_nf8dn")
+flat = true
 expand_icon = true
 
 [node name="GameOver" type="Panel" parent="UI"]
@@ -133,6 +221,7 @@ offset_right = 208.0
 offset_bottom = 198.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("13_tbnb4")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/GameOver"]
 layout_mode = 1
@@ -180,8 +269,8 @@ text = "Back to menu"
 [node name="Currency" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 294.0
-offset_bottom = 44.0
+offset_right = 401.0
+offset_bottom = 60.0
 script = ExtResource("7_hxbw8")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Currency"]
@@ -207,22 +296,69 @@ expand_mode = 2
 [node name="CurrencyLabel" type="Label" parent="UI/Currency/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "123"
 
-[node name="ShopButton" type="Button" parent="UI"]
-unique_name_in_owner = true
-anchors_preset = 1
+[node name="Audio" type="Control" parent="UI"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 3
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -56.0
-offset_bottom = 56.0
+anchor_bottom = 1.0
 grow_horizontal = 0
-icon = ExtResource("8_2hpou")
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopButton" type="Button" parent="UI/Audio/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+icon = ExtResource("9_wv3kb")
 flat = true
 expand_icon = true
 
+[node name="MusicButton" type="Button" parent="UI/Audio/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+toggle_mode = true
+icon = ExtResource("11_sov7a")
+flat = true
+
+[node name="SFXButton" type="Button" parent="UI/Audio/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+toggle_mode = true
+icon = ExtResource("11_wsnrq")
+flat = true
+
+[node name="HelpButton" type="Button" parent="UI/Audio/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+icon = ExtResource("12_nv1pe")
+flat = true
+
 [node name="Shop" type="Panel" parent="UI"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(250, 0)
 anchors_preset = 11
 anchor_left = 1.0
@@ -230,6 +366,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("13_tbnb4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop"]
 layout_mode = 1
@@ -277,8 +414,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-texture = ExtResource("9_vr6v8")
+texture = ExtResource("18_2dsgo")
 expand_mode = 2
 
 [node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer/TextureRect"]
@@ -330,7 +468,7 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("10_xs6hj")
+texture = ExtResource("19_irsjf")
 expand_mode = 2
 
 [node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer/TextureRect"]
@@ -381,8 +519,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-texture = ExtResource("11_knmww")
+texture = ExtResource("20_4voqk")
 expand_mode = 2
 
 [node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer/TextureRect"]
@@ -433,8 +572,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-texture = ExtResource("12_t4og6")
+texture = ExtResource("21_w0e2i")
 expand_mode = 2
 
 [node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer/TextureRect"]
@@ -472,6 +612,58 @@ text = "123"
 icon = ExtResource("7_2ytqu")
 expand_icon = true
 
+[node name="JumpHeight" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("16_1vbcl")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]Jetpack Fuel Cap.
+100 >> [color=green]200[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "123"
+icon = ExtResource("7_2ytqu")
+expand_icon = true
+
 [node name="ATKSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
@@ -485,8 +677,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-texture = ExtResource("13_l3kji")
+texture = ExtResource("23_cj31i")
 expand_mode = 2
 
 [node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer/TextureRect"]
@@ -537,8 +730,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-texture = ExtResource("14_fnae8")
+texture = ExtResource("24_pm8gn")
 expand_mode = 2
 
 [node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer/TextureRect"]
@@ -576,7 +770,277 @@ text = "123"
 icon = ExtResource("7_2ytqu")
 expand_icon = true
 
+[node name="JPFuelCap" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("18_xg63x")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]Jetpack Fuel Cap.
+100 >> [color=green]200[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "123"
+icon = ExtResource("7_2ytqu")
+expand_icon = true
+
+[node name="JPSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("19_jntit")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]Jetpack Fuel Cap.
+100 >> [color=green]200[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "123"
+icon = ExtResource("7_2ytqu")
+expand_icon = true
+
+[node name="JPRegen" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("21_0gftb")
+expand_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "?"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]Jetpack Fuel Cap.
+100 >> [color=green]200[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "123"
+icon = ExtResource("7_2ytqu")
+expand_icon = true
+
+[node name="HelpMenu" type="Panel" parent="UI"]
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(700, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("13_tbnb4")
+script = ExtResource("24_d7w0a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HelpMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HelpMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 32
+text = "X"
+
+[node name="Pages" type="Control" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PrevButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
+custom_minimum_size = Vector2(45, 75)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = "<"
+
+[node name="Content" type="Control" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="RichTextLabel" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/normal_font = SubResource("SystemFont_4f14d")
+bbcode_enabled = true
+text = "Description"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_nf8dn")
+stretch_mode = 5
+
+[node name="NextButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
+custom_minimum_size = Vector2(45, 75)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = ">"
+
+[node name="Label" type="Label" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "1 / 14"
+horizontal_alignment = 1
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("7_p0ws8")
 autoplay = true
+bus = &"Music"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(246, 264)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("28_d66o5")
+
+[node name="Shaker" type="Node" parent="Camera2D"]
+script = ExtResource("30_qigw3")
+target_property = &"offset"
+min_value = -5.0
+max_value = 5.0
+fall_off = SubResource("Curve_j66mb")

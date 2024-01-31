@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd5cjt52qe4xh"]
+
+[ext_resource type="SpriteFrames" uid="uid://b5q2jv6vdkv4r" path="res://Assets/Image/weaponhit.tres" id="1_37gvy"]
+[ext_resource type="Script" path="res://Scenes/Effects/WeaponHit.gd" id="1_aq8te"]
+
+[node name="WeaponHit" type="Node2D"]
+script = ExtResource("1_aq8te")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_37gvy")

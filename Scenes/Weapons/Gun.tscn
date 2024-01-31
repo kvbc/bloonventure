@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://b66pl2urpcs63"]
 
-[ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="1_hu2a8"]
 [ext_resource type="Script" path="res://Scenes/Weapons/Gun.gd" id="1_l7s67"]
+[ext_resource type="Texture2D" uid="uid://cbr0frgu7ju3" path="res://Assets/Image/new/pistol.png" id="2_fr6dm"]
 
 [node name="Gun" type="Node2D"]
 script = ExtResource("1_l7s67")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.929412, 0, 0, 1)
-scale = Vector2(0.140625, 0.140625)
-texture = ExtResource("1_hu2a8")
+texture_filter = 1
+position = Vector2(30, 0)
+scale = Vector2(0.583333, 0.583333)
+texture = ExtResource("2_fr6dm")

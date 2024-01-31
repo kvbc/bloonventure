@@ -19,16 +19,32 @@ func _ready():
 	$GameOver.process_mode = Node.PROCESS_MODE_ALWAYS
 	$GameOver.visible = false
 	$GameOver/MarginContainer/VBoxContainer/MainMenuButton.pressed.connect(func():
+		Engine.time_scale = 1
 		get_tree().paused = false
 		get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 	)
-	$ShopButton.pressed.connect(func():
+	%ShopButton.pressed.connect(func():
 		%Shop.visible = true
 		get_tree().paused = true
 	)
 	%ShopCloseButton.pressed.connect(func():
 		get_tree().paused = false
 		%Shop.visible = false
+	)
+	%MusicButton.toggled.connect(func(is_toggled):
+		%MusicButton.icon = preload("res://Assets/Image/musicOff.png") if is_toggled else preload("res://Assets/Image/musicOn.png")
+		AudioServer.set_bus_mute(2, is_toggled)
+	)
+	%SFXButton.toggled.connect(func(is_toggled):
+		%SFXButton.icon = preload("res://Assets/Image/audioOff.png") if is_toggled else preload("res://Assets/Image/audioOn.png")
+		AudioServer.set_bus_mute(1, is_toggled)
+	)
+	$Audio/VBoxContainer/HelpButton.pressed.connect(func():
+		$HelpMenu.Show()
+	)
+	$HelpMenu/MarginContainer/VBoxContainer/CloseButton.pressed.connect(func():
+		$HelpMenu.visible = false
+		get_tree().paused = false
 	)
 
 func _process(delta):
@@ -64,3 +80,16 @@ func GameOver(reason: String):
 	%DescriptionLabel.text += "\nEnemies killed: [color=gold]" + str(ALGlobal.World.EnemiesKilled) + "[/color]"
 	%DescriptionLabel.text += "\nDistance traveled: [color=gold]" + dist_travel_str + "[/color]"
 	%DescriptionLabel.text += "[/center]"
+
+func AddCurrency(currency, atnode: Node2D):
+	var atpos: Vector2 = atnode.get_global_transform_with_canvas().get_origin()
+	for i in currency:
+		var coin = preload("res://Scenes/UICoin.tscn").instantiate()
+		coin.global_position = atpos + Vector2(
+			randf_range(-50,50),
+			randf_range(-50,50)
+		)
+		coin.move_to = $Currency/MarginContainer/HBoxContainer/TextureRect.global_position + $Currency/MarginContainer/HBoxContainer/TextureRect.size / 2
+		coin.value = currency
+		add_child(coin)
+		await get_tree().create_timer(0.05).timeout

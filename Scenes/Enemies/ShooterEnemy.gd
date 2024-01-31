@@ -2,6 +2,17 @@ extends Enemy
 
 const BULLET_SPEED = 200
 const FIRE_DELAY = 2.5
+const SPEED = 100
+
+func _physics_process(delta):
+	velocity = Vector2.ZERO
+	var dist = global_position.distance_to(ALGlobal.World.Player.global_position)
+	var dir = global_position.direction_to(ALGlobal.World.Player.global_position)
+	if dist > 500:
+		velocity = dir * SPEED
+	elif dist < 400:
+		velocity = -dir * SPEED
+	move_and_slide()
 
 func _ready():
 	var timer = Timer.new()

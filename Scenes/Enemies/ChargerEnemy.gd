@@ -5,6 +5,7 @@ const CHARGE_SPEED = 600
 const CHARGE_DELAY = 3 # sec
 
 func charge():
+	ALGlobal.PlayAudio(preload("res://Assets/SFX/scream.wav"), "SFX",0,-5)
 	velocity = global_position.direction_to(ALGlobal.World.Player.global_position) * CHARGE_SPEED
 
 func _physics_process(delta):
