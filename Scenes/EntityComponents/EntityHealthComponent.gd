@@ -18,9 +18,15 @@ var Health = 100:
 				ALGlobal.PlayAudio(preload("res://Assets/SFX/EnemyHurt.wav"), "SFX")
 			elif(get_parent() is Player):
 				ALGlobal.PlayAudio(preload("res://Assets/SFX/PlayerHurt.wav"), "SFX")
+				Engine.time_scale = 0.5
 			var dmg_ind = DamageIndicator.New(Health - v)
 			dmg_ind.global_position = get_parent().global_position
 			get_tree().current_scene.add_child(dmg_ind)
+			get_parent().modulate = Color.RED
+			get_tree().create_timer(0.1).timeout.connect(func():
+				get_parent().modulate = Color.WHITE
+				Engine.time_scale = 1
+			)
 		elif v > Health:
 			var msec = Time.get_ticks_msec()
 			last_hpup_msec = msec

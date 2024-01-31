@@ -55,7 +55,8 @@ func _process(delta):
 	if hour > 0:
 		str += "%02d:" % hour
 	str += "%02d:%02d" % [minute, second]
-	($TimeLabel as Label).text = str
+	(%TimeLabel as Label).text = str
+	%AltLabel.text = str((int(ALGlobal.World.background.global_position.y) + 825) / 1) + "m"
 	
 func _input(event):
 	if event is InputEventKey:

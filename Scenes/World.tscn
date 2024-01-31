@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c6n1nv4ue3m28"]
+[gd_scene load_steps=42 format=3 uid="uid://c6n1nv4ue3m28"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
 [ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scenes/Currency.gd" id="7_hxbw8"]
 [ext_resource type="AudioStream" uid="uid://br83eluw3ngv8" path="res://Assets/Music/InGame.wav" id="7_p0ws8"]
 [ext_resource type="Texture2D" uid="uid://cbr0frgu7ju3" path="res://Assets/Image/new/pistol.png" id="8_4spxm"]
+[ext_resource type="Texture2D" uid="uid://xurl78q33vcp" path="res://Assets/Image/iconsDefault.png" id="8_o64e3"]
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="8_vfjgm"]
 [ext_resource type="Script" path="res://Scenes/ShopStats.gd" id="9_ocho8"]
 [ext_resource type="Texture2D" uid="uid://dd2qxjp1uy3b" path="res://Assets/Image/new/shotgun.png" id="9_um5qt"]
@@ -42,6 +43,14 @@ script = ExtResource("5_1krxd")
 duration = 1.0
 transition = 0
 ease = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghf6g"]
+atlas = ExtResource("8_o64e3")
+region = Rect2(1024, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6x2p"]
+atlas = ExtResource("8_o64e3")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SystemFont" id="SystemFont_4f14d"]
 font_names = PackedStringArray("Consolas")
@@ -92,6 +101,76 @@ texture = ExtResource("6_36n6q")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(-6, 431, 306, 19)
+metadata/_edit_group_ = true
+
+[node name="sky" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -242.167)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky2" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -279.289)
+texture = ExtResource("6_36n6q")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky3" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -317.636)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky4" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -352.481)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky5" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -386.101)
+texture = ExtResource("6_36n6q")
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky6" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -422.347)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky7" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -458.594)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky8" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -496.591)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
 metadata/_edit_group_ = true
 
 [node name="water2" type="Sprite2D" parent="Backgrounds/Background"]
@@ -169,13 +248,59 @@ inactive_update_mode = 0
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("8_vfjgm")
 
-[node name="TimeLabel" type="Label" parent="UI"]
+[node name="TopStuff" type="Control" parent="UI"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 68.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/TopStuff"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TopStuff/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/TopStuff/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ghf6g")
+expand_mode = 3
+
+[node name="TimeLabel" type="Label" parent="UI/TopStuff/MarginContainer/HBoxContainer/TextureRect"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 60.0
+offset_top = 7.0
+offset_right = 108.0
+offset_bottom = 33.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/TopStuff/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_y6x2p")
+expand_mode = 3
+
+[node name="AltLabel" type="Label" parent="UI/TopStuff/MarginContainer/HBoxContainer/TextureRect2"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 60.0
+offset_top = 7.0
+offset_right = 96.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 32
+text = "Altitude"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -285,10 +410,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Currency/MarginContainer"]
 layout_mode = 2
