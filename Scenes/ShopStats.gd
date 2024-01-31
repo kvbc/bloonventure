@@ -20,7 +20,9 @@ func update_stats():
 		update_stat(child.name)
 
 func update_stat(stat_name: String):
-	var hbox = get_node(stat_name).get_node("HBoxContainer")
+	var hbox = get_node(stat_name).get_node_or_null("HBoxContainer")
+	if hbox == null:
+		hbox = get_node(stat_name).get_node("MarginContainer").get_node("HBoxContainer")
 	var vbox = hbox.get_node("VBoxContainer")
 	var label = vbox.get_node("RichTextLabel")
 	var button = vbox.get_node("Button")

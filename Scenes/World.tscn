@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c6n1nv4ue3m28"]
+[gd_scene load_steps=39 format=3 uid="uid://c6n1nv4ue3m28"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
 [ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
@@ -10,8 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://dlwwo6tne67et" path="res://Assets/Image/Currency.png" id="7_2ytqu"]
 [ext_resource type="Script" path="res://Scenes/Currency.gd" id="7_hxbw8"]
 [ext_resource type="AudioStream" uid="uid://br83eluw3ngv8" path="res://Assets/Music/InGame.wav" id="7_p0ws8"]
+[ext_resource type="Texture2D" uid="uid://cbr0frgu7ju3" path="res://Assets/Image/new/pistol.png" id="8_4spxm"]
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="8_vfjgm"]
 [ext_resource type="Script" path="res://Scenes/ShopStats.gd" id="9_ocho8"]
+[ext_resource type="Texture2D" uid="uid://dd2qxjp1uy3b" path="res://Assets/Image/new/shotgun.png" id="9_um5qt"]
 [ext_resource type="Texture2D" uid="uid://bnl8v2tpsn352" path="res://Assets/Image/fightFist.png" id="9_wv3kb"]
 [ext_resource type="Texture2D" uid="uid://b36jjuamrcidm" path="res://Assets/Image/musicOn.png" id="11_sov7a"]
 [ext_resource type="Texture2D" uid="uid://b5jdk4acvfmxn" path="res://Assets/Image/audioOn.png" id="11_wsnrq"]
@@ -29,6 +31,7 @@
 [ext_resource type="Script" path="res://Scenes/HelpMenu.gd" id="24_d7w0a"]
 [ext_resource type="Texture2D" uid="uid://4vovggsl3ain" path="res://Assets/Image/new/bullet speed.png" id="24_pm8gn"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_d66o5"]
+[ext_resource type="Texture2D" uid="uid://b6cu68x7t7hf3" path="res://Assets/Image/GUI_4x.png" id="30_ep13y"]
 [ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="30_qigw3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ijlh"]
@@ -40,13 +43,13 @@ duration = 1.0
 transition = 0
 ease = 2
 
-[sub_resource type="LabelSettings" id="LabelSettings_ki4k0"]
-font_size = 32
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="SystemFont" id="SystemFont_4f14d"]
 font_names = PackedStringArray("Consolas")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ki4k0"]
+font_size = 64
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_j66mb"]
 
@@ -188,23 +191,25 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Gun" type="Button" parent="UI/WeaponSlots"]
-custom_minimum_size = Vector2(75, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 15
-text = " 1"
-icon = ExtResource("2_nf8dn")
+theme_override_font_sizes/font_size = 64
+text = "1 "
+icon = ExtResource("8_4spxm")
 flat = true
 icon_alignment = 2
 expand_icon = true
 
 [node name="Shotgun" type="Button" parent="UI/WeaponSlots"]
-custom_minimum_size = Vector2(75, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 64
 text = " 2"
-icon = ExtResource("2_nf8dn")
+icon = ExtResource("9_um5qt")
 flat = true
 expand_icon = true
 
@@ -356,17 +361,125 @@ focus_mode = 0
 icon = ExtResource("12_nv1pe")
 flat = true
 
-[node name="Shop" type="Panel" parent="UI"]
-unique_name_in_owner = true
+[node name="HelpMenu" type="Panel" parent="UI"]
+process_mode = 3
 visible = false
+custom_minimum_size = Vector2(700, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("13_tbnb4")
+script = ExtResource("24_d7w0a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HelpMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HelpMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 32
+text = "X"
+
+[node name="Pages" type="Control" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PrevButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
+custom_minimum_size = Vector2(45, 75)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = "<"
+
+[node name="Content" type="Control" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="RichTextLabel" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/normal_font = SubResource("SystemFont_4f14d")
+bbcode_enabled = true
+text = "Description"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_nf8dn")
+stretch_mode = 5
+
+[node name="NextButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
+custom_minimum_size = Vector2(45, 75)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = ">"
+
+[node name="Label" type="Label" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "1 / 14"
+horizontal_alignment = 1
+
+[node name="Shop" type="NinePatchRect" parent="UI"]
+unique_name_in_owner = true
+texture_filter = 1
 custom_minimum_size = Vector2(250, 0)
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -64.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("13_tbnb4")
+texture = ExtResource("30_ep13y")
+region_rect = Rect2(384, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop"]
 layout_mode = 1
@@ -405,21 +518,28 @@ script = ExtResource("9_ocho8")
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/MarginContainer/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("18_2dsgo")
 expand_mode = 2
 
-[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer/TextureRect"]
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/MarginContainer/HBoxContainer/TextureRect"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 3
@@ -431,23 +551,24 @@ offset_left = -40.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "?"
+text = "2"
 label_settings = SubResource("LabelSettings_ki4k0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]Max HP
 100 >> [color=green]125[/color][/center]"
 
-[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "123"
@@ -925,106 +1046,6 @@ size_flags_vertical = 3
 text = "123"
 icon = ExtResource("7_2ytqu")
 expand_icon = true
-
-[node name="HelpMenu" type="Panel" parent="UI"]
-process_mode = 3
-visible = false
-custom_minimum_size = Vector2(700, 500)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -200.0
-offset_right = 250.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("13_tbnb4")
-script = ExtResource("24_d7w0a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/HelpMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HelpMenu/MarginContainer"]
-layout_mode = 2
-
-[node name="CloseButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 32
-text = "X"
-
-[node name="Pages" type="Control" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PrevButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
-custom_minimum_size = Vector2(45, 75)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 32
-text = "<"
-
-[node name="Content" type="Control" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="Label" type="RichTextLabel" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/normal_font = SubResource("SystemFont_4f14d")
-bbcode_enabled = true
-text = "Description"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="TextureRect" type="TextureRect" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("2_nf8dn")
-stretch_mode = 5
-
-[node name="NextButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
-custom_minimum_size = Vector2(45, 75)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 32
-text = ">"
-
-[node name="Label" type="Label" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "1 / 14"
-horizontal_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
