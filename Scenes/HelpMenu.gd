@@ -1,12 +1,14 @@
-extends Panel
+extends NinePatchRect
 
 var pages = [
 	[
-		"""[color=gold]WASD/Arrows[/color] to move
-[color=gold]SPACE      [/color] to (double) jump
-[color=gold]W/Up       [/color] to jetpack
-[color=gold]LShift     [/color] to dash
-[color=gold]E          [/color] to interact""",
+		"""[color=darkgreen]WASD/Arrows[/color] to move
+[color=darkgreen]SPACE      [/color] to (double) jump
+[color=darkgreen]W/Up       [/color] to jetpack
+[color=darkgreen]LShift     [/color] to dash
+[color=darkgreen]E          [/color] to interact
+[color=darkgreen]LMB        [/color] to attack
+[color=darkgreen]1,2        [/color] to switch weapons""",
 		preload("res://icon.svg")
 	],
 	[
@@ -14,11 +16,11 @@ var pages = [
 		preload("res://icon.svg")
 	],
 	[
-		"Don't let the balloon sink \n or get too high up in the sky!",
+		"Don't let the balloon sink or get too high up in the sky!",
 		preload("res://icon.svg")
 	],
 	[
-		"Fight off progressively harder and harder \n hordes of enemies!",
+		"Fight off progressively harder and harder hordes of enemies!",
 		preload("res://icon.svg")
 	],
 	[
@@ -53,4 +55,8 @@ func _ready():
 	$MarginContainer/VBoxContainer/Pages/HBoxContainer/NextButton.pressed.connect(func():
 		if page_num < pages.size():
 			page_num += 1
+	)
+	visibility_changed.connect(func():
+		if visible:
+			page_num = 1
 	)

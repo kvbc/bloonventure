@@ -42,7 +42,7 @@ func _ready():
 	$Audio/VBoxContainer/HelpButton.pressed.connect(func():
 		$HelpMenu.Show()
 	)
-	$HelpMenu/MarginContainer/VBoxContainer/CloseButton.pressed.connect(func():
+	$HelpMenu/MarginContainer/CloseButton.pressed.connect(func():
 		$HelpMenu.visible = false
 		get_tree().paused = false
 	)
@@ -57,6 +57,7 @@ func _process(delta):
 	str += "%02d:%02d" % [minute, second]
 	(%TimeLabel as Label).text = str
 	%AltLabel.text = str((int(ALGlobal.World.background.global_position.y) + 825) / 1) + "m"
+	%DistLabel.text = dist_traveled()
 	
 func _input(event):
 	if event is InputEventKey:
@@ -66,20 +67,24 @@ func _input(event):
 			elif event.keycode == KEY_2:
 				ALGlobal.World.Player.SetWeapon("Shotgun")
 
-func GameOver(reason: String):
+func dist_traveled():
 	var dist_traveled = int(ALGlobal.World.DistanceTraveled)
 	var dist_travel_str = ""
 	if dist_traveled > 1000:
 		dist_travel_str += str(dist_traveled / 1000) + "km "
 	dist_travel_str += str(dist_traveled % 1000) + "m"
+	return dist_travel_str
+
+func GameOver(reason: String):
+	var dist_travel_str = dist_traveled()
 	
 	$GameOver.visible = true
 	%ReasonLabel.text = reason
 	%DescriptionLabel.text = "[center]"
-	%DescriptionLabel.text += "\n\n\n\n"
-	%DescriptionLabel.text += "Survived for: [color=gold]" + "%dh %dm %ds" % [hour, minute, second] + "[/color]"
-	%DescriptionLabel.text += "\nEnemies killed: [color=gold]" + str(ALGlobal.World.EnemiesKilled) + "[/color]"
-	%DescriptionLabel.text += "\nDistance traveled: [color=gold]" + dist_travel_str + "[/color]"
+	%DescriptionLabel.text += "\n\n"
+	%DescriptionLabel.text += "Survived for: [color=darkgreen]" + "%dh %dm %ds" % [hour, minute, second] + "[/color]"
+	%DescriptionLabel.text += "\nEnemies killed: [color=darkgreen]" + str(ALGlobal.World.EnemiesKilled) + "[/color]"
+	%DescriptionLabel.text += "\nDistance traveled: [color=darkgreen]" + dist_travel_str + "[/color]"
 	%DescriptionLabel.text += "[/center]"
 
 func AddCurrency(currency, atnode: Node2D):

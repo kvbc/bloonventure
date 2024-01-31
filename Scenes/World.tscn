@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c6n1nv4ue3m28"]
+[gd_scene load_steps=48 format=3 uid="uid://c6n1nv4ue3m28"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
 [ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://b36jjuamrcidm" path="res://Assets/Image/musicOn.png" id="11_sov7a"]
 [ext_resource type="Texture2D" uid="uid://b5jdk4acvfmxn" path="res://Assets/Image/audioOn.png" id="11_wsnrq"]
 [ext_resource type="Texture2D" uid="uid://qx841qlk7qm6" path="res://Assets/Image/question.png" id="12_nv1pe"]
-[ext_resource type="StyleBox" uid="uid://cq850jfy2vj27" path="res://Styles/Panel.tres" id="13_tbnb4"]
 [ext_resource type="Texture2D" uid="uid://b6bgutohhcokv" path="res://Assets/Image/JumpHeight.png" id="16_1vbcl"]
 [ext_resource type="Texture2D" uid="uid://dxiortvuvp1in" path="res://Assets/Image/new/heart.png" id="18_2dsgo"]
 [ext_resource type="Texture2D" uid="uid://batlyad6jckle" path="res://Assets/Image/JPFuelCap.png" id="18_xg63x"]
@@ -27,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://umfkboy3cdnm" path="res://Assets/Image/JPSpeed.png" id="19_jntit"]
 [ext_resource type="Texture2D" uid="uid://c8olr4mp3uwak" path="res://Assets/Image/new/dmg.png" id="20_4voqk"]
 [ext_resource type="Texture2D" uid="uid://fqg4i5gj0dk7" path="res://Assets/Image/JPRegen.png" id="21_0gftb"]
+[ext_resource type="Texture2D" uid="uid://b7hpo6h6rgnma" path="res://Assets/Image/sheet_white1x.png" id="21_6l1dj"]
 [ext_resource type="Texture2D" uid="uid://cqykxworvebsx" path="res://Assets/Image/new/speed.png" id="21_w0e2i"]
 [ext_resource type="Texture2D" uid="uid://cgkgch5q5myal" path="res://Assets/Image/new/dmgspeed.png" id="23_cj31i"]
 [ext_resource type="Script" path="res://Scenes/HelpMenu.gd" id="24_d7w0a"]
@@ -48,12 +48,34 @@ ease = 2
 atlas = ExtResource("8_o64e3")
 region = Rect2(1024, 640, 64, 64)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_khaw4"]
+load_path = "res://.godot/imported/iconsDefault.png-74ba4e442e7e6a2e696b5378ec9772a0.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6x2p"]
-atlas = ExtResource("8_o64e3")
+atlas = SubResource("CompressedTexture2D_khaw4")
 region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s0ipl"]
+load_path = "res://.godot/imported/iconsDefault.png-74ba4e442e7e6a2e696b5378ec9772a0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3m6tx"]
+atlas = SubResource("CompressedTexture2D_s0ipl")
+region = Rect2(576, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv8y2"]
+atlas = ExtResource("21_6l1dj")
+region = Rect2(0, 250, 50, 50)
 
 [sub_resource type="SystemFont" id="SystemFont_4f14d"]
 font_names = PackedStringArray("Consolas")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeci8"]
+atlas = ExtResource("21_6l1dj")
+region = Rect2(350, 350, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b18kk"]
+atlas = ExtResource("21_6l1dj")
+region = Rect2(399, 398, 52, 53)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ki4k0"]
 font_size = 64
@@ -304,6 +326,23 @@ text = "Altitude"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextureRect3" type="TextureRect" parent="UI/TopStuff/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_3m6tx")
+expand_mode = 3
+
+[node name="DistLabel" type="Label" parent="UI/TopStuff/MarginContainer/HBoxContainer/TextureRect3"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 60.0
+offset_top = 7.0
+offset_right = 96.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 32
+text = "Dist. Traveled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="WeaponSlots" type="HBoxContainer" parent="UI"]
 custom_minimum_size = Vector2(0, 75)
 anchors_preset = 12
@@ -338,7 +377,7 @@ icon = ExtResource("9_um5qt")
 flat = true
 expand_icon = true
 
-[node name="GameOver" type="Panel" parent="UI"]
+[node name="GameOver" type="NinePatchRect" parent="UI"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -351,7 +390,14 @@ offset_right = 208.0
 offset_bottom = 198.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("13_tbnb4")
+texture = ExtResource("30_ep13y")
+region_rect = Rect2(384, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/GameOver"]
 layout_mode = 1
@@ -360,10 +406,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOver/MarginContainer"]
 layout_mode = 2
@@ -372,7 +418,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
 text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -381,19 +428,24 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.811765, 0.811765, 0.811765, 1)
+theme_override_colors/font_color = Color(0.305882, 0.305882, 0.305882, 1)
+theme_override_font_sizes/font_size = 32
 text = "[reason]"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="DescriptionLabel" type="RichTextLabel" parent="UI/GameOver/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "this is a description"
 
 [node name="MainMenuButton" type="Button" parent="UI/GameOver/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Back to menu"
 
 [node name="Currency" type="Control" parent="UI"]
@@ -484,7 +536,7 @@ focus_mode = 0
 icon = ExtResource("12_nv1pe")
 flat = true
 
-[node name="HelpMenu" type="Panel" parent="UI"]
+[node name="HelpMenu" type="NinePatchRect" parent="UI"]
 process_mode = 3
 visible = false
 custom_minimum_size = Vector2(700, 500)
@@ -499,7 +551,14 @@ offset_right = 250.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("13_tbnb4")
+texture = ExtResource("30_ep13y")
+region_rect = Rect2(384, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 script = ExtResource("24_d7w0a")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/HelpMenu"]
@@ -509,20 +568,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/HelpMenu/MarginContainer"]
 layout_mode = 2
-
-[node name="CloseButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 32
-text = "X"
 
 [node name="Pages" type="Control" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -537,11 +589,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PrevButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
+self_modulate = Color(0, 0, 0, 0.176471)
 custom_minimum_size = Vector2(45, 75)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 32
-text = "<"
+icon = SubResource("AtlasTexture_hv8y2")
+flat = true
 
 [node name="Content" type="Control" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
 layout_mode = 2
@@ -557,14 +611,15 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="Label" type="RichTextLabel" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.360784)
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_4f14d")
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "Description"
 fit_content = true
 scroll_active = false
-autowrap_mode = 0
 
 [node name="TextureRect" type="TextureRect" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer"]
 layout_mode = 2
@@ -573,19 +628,37 @@ texture = ExtResource("2_nf8dn")
 stretch_mode = 5
 
 [node name="NextButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
+self_modulate = Color(0, 0, 0, 0.176471)
 custom_minimum_size = Vector2(45, 75)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 32
-text = ">"
+icon = SubResource("AtlasTexture_qeci8")
+flat = true
 
 [node name="Label" type="Label" parent="UI/HelpMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 text = "1 / 14"
 horizontal_alignment = 1
 
+[node name="CloseButton" type="Button" parent="UI/HelpMenu/MarginContainer"]
+self_modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 128
+icon = SubResource("AtlasTexture_b18kk")
+flat = true
+
 [node name="Shop" type="NinePatchRect" parent="UI"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 custom_minimum_size = Vector2(250, 0)
 anchors_preset = 11

@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/EntityComponents/EntityHealthComponent.gd" id="1_dhndm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rm54u"]
+font_size = 32
 outline_size = 6
 outline_color = Color(0.545098, 0.12549, 0.12549, 1)
 
