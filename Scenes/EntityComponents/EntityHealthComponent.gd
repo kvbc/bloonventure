@@ -32,9 +32,7 @@ var Health = 100:
 			last_hpup_msec = msec
 			$Label.text = "+" + str(v - Health)
 			$Label.rotation_degrees = randf_range(-15, 15)
-		Health = v
-		bar.value = v
-		if v <= 0:
+		if v <= 0 and Health > 0:
 			if(get_parent() is Enemy):
 				ALGlobal.World.EnemiesKilled += 1
 				ALGlobal.World.AddCurrency(5, get_parent())
@@ -46,6 +44,8 @@ var Health = 100:
 				ALGlobal.World.GameOver("you died!")
 			else:
 				get_parent().queue_free()
+		Health = v
+		bar.value = v
 var MaxHealth = 100:
 	set(v):
 		MaxHealth = v
