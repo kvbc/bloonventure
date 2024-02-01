@@ -10,6 +10,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var ReloadBar: ProgressBar = $ReloadBar
 var added_velocity = Vector2.ZERO
 var max_jetpack_fuel = 100:
+	get:
+		return max_jetpack_fuel * (1 if ALGlobal.World == null else ALGlobal.World.GetStatValue("JPFuelCap"))
 	set(v):
 		max_jetpack_fuel = v
 		$JetpackBar.max_value = v
@@ -22,6 +24,7 @@ var last_dash_msec = Time.get_ticks_msec()
 var last_step_msec = Time.get_ticks_msec()
 var jpanim = 0
 var fireloops = {}
+var grapple_col = null
 
 func SetWeapon(name):
 	$Gun.visible = false
@@ -50,7 +53,7 @@ func _ready():
 		var ehc = $EntityHealthComponent
 		ehc.Health += ALGlobal.World.GetStatValue("HPRegen")
 		if is_on_floor():
-			jetpack_fuel += ALGlobal.World.GetStatValue("JPRegen")
+			jetpack_fuel += 25 * ALGlobal.World.GetStatValue("JPRegen")
 			jetpack_fuel = min(jetpack_fuel, max_jetpack_fuel)
 	)
 	add_child(hpregen_timer)
@@ -78,9 +81,14 @@ func _process(delta):
 		weapon.Fire()
 	if is_on_floor():
 		can_double_jump = true
+	queue_redraw()
 
 func AddVelocity(vel):
 	added_velocity += vel
+
+func _draw():
+	if grapple_col != null and not grapple_col.is_empty():
+		draw_line(Vector2.ZERO, to_local(grapple_col.position), Color.GRAY, 6)
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -94,15 +102,28 @@ func _physics_process(delta):
 		ALGlobal.PlayAudio(preload("res://Assets/SFX/PlayerJump.wav"), "SFX")
 		velocity.y += JUMP_VELOCITY * ALGlobal.World.GetStatValue("JumpHeight")
 	
-		
-	if Input.is_action_pressed("jetpack") and jetpack_fuel > 0:
+	var grapple = ALGlobal.World.HasHook and Input.is_action_pressed("grapple")
+	var jetpack_on = Input.is_action_pressed("jetpack") or grapple
+	grapple_col = null
+	if jetpack_on and jetpack_fuel > 0:
 		if jpanim == 0:
 			jpanim = randi_range(2,3)
 			for fire in [$fireleft, $fireright]:
 				fire.visible = true
 				fire.play("start_" + str(jpanim))
-		velocity.y += -35 * ALGlobal.World.GetStatValue("JPSpeed")
-		jetpack_fuel -= 100 * delta
+		if grapple:
+			var space = get_world_2d().direct_space_state
+			var rayparams = PhysicsRayQueryParameters2D.create(global_position, global_position + global_position.direction_to(get_global_mouse_position()) * 500, pow(2, 2-1) + pow(2, 5-1))
+			var col = space.intersect_ray(rayparams)
+			grapple_col = col
+			if col != null and not col.is_empty():
+				var vel = 35 * ALGlobal.World.GetStatValue("JPSpeed") * global_position.direction_to(get_global_mouse_position())
+				velocity.y += vel.y
+				added_velocity.x += vel.x
+				jetpack_fuel -= 25 * delta
+		else:
+			velocity.y += -35 * ALGlobal.World.GetStatValue("JPSpeed")
+			jetpack_fuel -= 100 * delta
 	elif jpanim != 0:
 		for fire in [$fireleft, $fireright]:
 			fire.play("end_" + str(jpanim))

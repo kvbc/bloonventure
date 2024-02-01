@@ -35,7 +35,7 @@ var Health = 100:
 		if v <= 0 and Health > 0:
 			if(get_parent() is Enemy):
 				ALGlobal.World.EnemiesKilled += 1
-				ALGlobal.World.AddCurrency(5, get_parent())
+				ALGlobal.World.AddCurrency(10, get_parent())
 			
 			if(get_parent() is Player):
 				var explosion = preload("res://Scenes/Effects/Explosion.tscn").instantiate()

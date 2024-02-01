@@ -29,15 +29,21 @@ func update_stat(stat_name: String):
 	var lvl_label = hbox.get_node("TextureRect").get_node("LevelLabel")
 	
 	var stat = ALGlobal.World.Stats[stat_name]
-	var value = stat.BaseValue
 	var cost = stat.BaseCost
-	for i in stat.Level:
-		value += stat.BaseValue * stat.ValueMultiplier
-		cost += stat.BaseCost * stat.CostMultiplier
-	var next_value = value + stat.BaseValue * stat.ValueMultiplier
-	
-	lvl_label.text = "" if stat.Level == 0 else str(stat.Level + 1)
-	label.text = "[center]%s\n%s >> [color=green]%s[/color][/center]" % [stat.Name, stat.ValueFormat % value, stat.ValueFormat % next_value]
+	if "Level" in stat:
+		var value = stat.BaseValue
+		for i in stat.Level:
+			value += stat.BaseValue + stat.ValueAdd #* stat.ValueMultiplier
+			cost += stat.BaseCost + stat.CostAdd #* stat.CostMultiplier
+		var next_value = value + stat.BaseValue + stat.ValueAdd #* stat.ValueMultiplier
+		
+		lvl_label.text = "" if stat.Level == 0 else str(stat.Level + 1)
+		label.text = "[center]%s\n%s >> [color=green]%s[/color][/center]" % [stat.Name, stat.ValueFormat % value, stat.ValueFormat % next_value]
+	else:
+		if stat.Buyed:
+			get_node(stat_name).queue_free()
+		else:
+			label.text = "[center]Grappling Hook (C)[/center]"
 	button.text = str(cost)
 	
 	button.self_modulate = Color.GREEN if ALGlobal.World.Currency >= cost else Color.RED

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://c6n1nv4ue3m28"]
+[gd_scene load_steps=56 format=3 uid="uid://c6n1nv4ue3m28"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
 [ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
@@ -29,6 +29,7 @@
 [ext_resource type="StyleBox" uid="uid://dumq0jebmsxqb" path="res://Styles/ShopPanel.tres" id="24_5gqsd"]
 [ext_resource type="Script" path="res://Scenes/HelpMenu.gd" id="24_d7w0a"]
 [ext_resource type="Texture2D" uid="uid://4vovggsl3ain" path="res://Assets/Image/new/bullet speed.png" id="24_pm8gn"]
+[ext_resource type="Texture2D" uid="uid://tfijr450j31m" path="res://Assets/Image/new_3/hook.png" id="25_k28ac"]
 [ext_resource type="Texture2D" uid="uid://b2ktf1sgt72yi" path="res://Assets/Image/new_new/currency.png" id="26_l10cr"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_d66o5"]
 [ext_resource type="Texture2D" uid="uid://dxsdk5ol4cnab" path="res://Assets/Image/new_new/jetpack_capacity.png" id="29_s7l3c"]
@@ -851,6 +852,7 @@ flat = true
 
 [node name="Shop" type="NinePatchRect" parent="UI"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 custom_minimum_size = Vector2(250, 0)
 anchors_preset = 11
@@ -908,6 +910,82 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("9_ocho8")
+
+[node name="Hook" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("24_5gqsd")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/Hook"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/Hook/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/Hook/MarginContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("25_k28ac")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/Hook/MarginContainer/HBoxContainer/TextureRect"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "2"
+label_settings = SubResource("LabelSettings_ki4k0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/Hook/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/Hook/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Max HP
+100 >> [color=green]125[/color][/center]"
+
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/Hook/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "123"
+icon = ExtResource("26_l10cr")
+flat = true
+expand_icon = true
+
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/Hook/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="MaxHP" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
 custom_minimum_size = Vector2(50, 100)
@@ -1016,8 +1094,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
+offset_left = -28.0
+offset_top = -90.0
+offset_right = 12.0
+offset_bottom = -39.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "?"

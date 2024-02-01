@@ -8,7 +8,8 @@ var pages = [
 [color=darkgreen]LShift/L   [/color] to dash
 [color=darkgreen]E          [/color] to interact
 [color=darkgreen]LMB        [/color] to attack
-[color=darkgreen]1,2        [/color] to switch weapons""",
+[color=darkgreen]1,2        [/color] to switch weapons,
+[color=darkgreen]C          [/color] to grapple""",
 		preload("res://icon.svg")
 	],
 	[

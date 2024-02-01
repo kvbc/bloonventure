@@ -22,97 +22,103 @@ var last_max_enemy = Time.get_ticks_msec()
 const MAX_MAX_ENEMIES = 10
 var EnemyLevel = 1
 var EnemyLevelMarkiplier = 1.25
+var HasHook = false
 
 var Stats = {
+	"Hook" = {
+		Name = "Hook (E)",
+		BaseCost = 250,
+		Buyed = false
+	},
 	"MaxHP" = {
 		Name = "Max HP",
 		ValueFormat = "%d",
 		BaseValue = 100,
-		BaseCost = 10,
+		BaseCost = 30,
 		Level = 0,
-		ValueMultiplier = 1.25,
-		CostMultiplier = 1.25
+		ValueAdd = 25,
+		CostAdd = 10
 	},
 	"HPRegen" = {
 		Name = "HP Regen",
 		ValueFormat = "%d/s",
 		BaseValue = 1,
-		BaseCost = 10,
+		BaseCost = 20,
 		Level = 0,
-		ValueMultiplier = 1.25,
-		CostMultiplier = 1.25
+		ValueAdd = 1,
+		CostAdd = 10
 	},
 	"DMGMulti" = {
 		Name = "DMG Mult.",
 		ValueFormat = "%dx",
 		BaseValue = 1,
-		BaseCost = 10,
+		BaseCost = 40,
 		Level = 0,
-		ValueMultiplier = 1.25,
-		CostMultiplier = 1.25
+		ValueAdd = 0.1,
+		CostAdd = 30
 	},
 	"MoveSpeed" = {
 		Name = "Move Speed",
 		ValueFormat = "%dx",
 		BaseValue = 1,
-		BaseCost = 10,
+		BaseCost = 35,
 		Level = 0,
-		ValueMultiplier = 1.25,
-		CostMultiplier = 1.25
+		ValueAdd = 0.05,
+		CostAdd = 15
 	},
 	"ATKSpeed" = {
 		Name = "ATK Speed",
 		ValueFormat = "%dx",
 		BaseValue = 1,
-		BaseCost = 10,
+		BaseCost = 40,
 		Level = 0,
-		ValueMultiplier = 1.25,
-		CostMultiplier = 1.25
+		ValueAdd = 0.1,
+		CostAdd = 30
 	},
 	"BulletSpeed" = {
 		Name = "Bullet Speed",
 		ValueFormat = "%dx",
 		BaseValue = 1,
-		BaseCost = 10,
+		BaseCost = 15,
 		Level = 0,
-		ValueMultiplier = 1.25,
-		CostMultiplier = 1.25
+		ValueAdd = 0.1,
+		CostAdd = 10
 	},
 	"JumpHeight" = {
 		Name = "Jump Height",
 		ValueFormat = "%dx",
 		BaseValue = 1,
-		BaseCost = 10,
+		BaseCost = 15,
 		Level = 0,
-		ValueMultiplier = 1.25,
-		CostMultiplier = 1.25
+		ValueAdd = 0.1,
+		CostAdd = 5
 	},
 	"JPSpeed" = {
 		Name = "Jetpack Speed",
 		ValueFormat = "%dx",
 		BaseValue = 1,
-		BaseCost = 10,
+		BaseCost = 20,
 		Level = 0,
-		ValueMultiplier = 1.25,
-		CostMultiplier = 1.25
+		ValueAdd = 0.2,
+		CostAdd = 10
 	},
 	"JPFuelCap" = {
 		Name = "Jetpack Cap.",
-		ValueFormat = "%d",
-		BaseValue = 100,
-		BaseCost = 10,
+		ValueFormat = "%dx",
+		BaseValue = 1,
+		BaseCost = 40,
 		Level = 0,
-		ValueMultiplier = 1.25,
-		CostMultiplier = 1.25
+		ValueAdd = 0.15,
+		CostAdd = 20
 	},
 	"JPRegen" = {
 		Name = "Jetpack Regen",
-		ValueFormat = "%d/s",
-		BaseValue = 25,
-		BaseCost = 10,
+		ValueFormat = "%dx/s",
+		BaseValue = 1,
+		BaseCost = 50,
 		Level = 0,
-		ValueMultiplier = 1.25,
-		CostMultiplier = 1.25
+		ValueAdd = 0.2,
+		CostAdd = 15
 	}
 }
 
@@ -124,16 +130,20 @@ func GetStatValue(stat_name: String):
 	return value
 
 func UpgradeStat(stat_name: String):
-	Stats[stat_name].Level += 1
-	var value = GetStatValue(stat_name)
-	
-	match stat_name:
-		"MaxHP":
-			var ehc = Player.get_node("EntityHealthComponent")
-			ehc.Health += value - ehc.MaxHealth
-			ehc.MaxHealth = value
-		"JPFuelCap":
-			Player.max_jetpack_fuel = value
+	if "Level" in Stats[stat_name]:
+		Stats[stat_name].Level += 1
+		var value = GetStatValue(stat_name)
+		
+		match stat_name:
+			"MaxHP":
+				var ehc = Player.get_node("EntityHealthComponent")
+				var mh = ehc.MaxHealth
+				ehc.MaxHealth = value
+				ehc.Health += value - mh
+	else:
+		HasHook = true
+		Stats[stat_name].Buyed = true
+		print("buy hook")
 
 func _process(delta):
 	DistanceTraveled += delta * BG_SPEED / 10
