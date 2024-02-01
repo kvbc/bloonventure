@@ -59,6 +59,13 @@ func _process(delta):
 	%AltLabel.text = str((int(ALGlobal.World.background.global_position.y) + 825) / 1) + "m"
 	%DistLabel.text = dist_traveled()
 	
+	if ALGlobal.World.Player.weapon is Gun:
+		%Gun.modulate.a = 1
+		%Shotgun.modulate.a = 0.35
+	else:
+		%Gun.modulate.a = 0.35
+		%Shotgun.modulate.a = 1
+	
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed:

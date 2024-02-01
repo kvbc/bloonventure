@@ -89,6 +89,7 @@ script = ExtResource("1_d6njh")
 
 [node name="Backgrounds" type="Node2D" parent="."]
 unique_name_in_owner = true
+z_as_relative = false
 
 [node name="Background" type="Sprite2D" parent="Backgrounds"]
 unique_name_in_owner = true
@@ -355,6 +356,8 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Gun" type="Button" parent="UI/WeaponSlots"]
+unique_name_in_owner = true
+texture_filter = 1
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -367,6 +370,8 @@ icon_alignment = 2
 expand_icon = true
 
 [node name="Shotgun" type="Button" parent="UI/WeaponSlots"]
+unique_name_in_owner = true
+texture_filter = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

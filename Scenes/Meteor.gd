@@ -15,5 +15,9 @@ func _ready():
 			body.AddVelocity(dir * SPEED / 2)
 	)
 	
+	$fire_left.visible = dir.x < 0 
+	$fire_right.visible = dir.x > 0 
+	
 func _process(delta):
+	$Sprites.rotation_degrees += delta * 250
 	global_position += dir * SPEED * delta

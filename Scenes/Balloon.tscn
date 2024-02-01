@@ -1,7 +1,8 @@
-[gd_scene load_steps=67 format=3 uid="uid://dcdm6e0oma3o0"]
+[gd_scene load_steps=69 format=3 uid="uid://dcdm6e0oma3o0"]
 
 [ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="1_caf5o"]
 [ext_resource type="Script" path="res://Scenes/Balloon.gd" id="1_pthr5"]
+[ext_resource type="Texture2D" uid="uid://c5qnxgbstaihg" path="res://Assets/Image/balon.png" id="2_l3j2e"]
 [ext_resource type="Script" path="res://Scenes/Candle.gd" id="2_le14k"]
 [ext_resource type="Script" path="res://addons/controller_icons/objects/Sprite.gd" id="3_2tvjg"]
 [ext_resource type="Texture2D" uid="uid://xe4n818le3p8" path="res://addons/controller_icons/assets/key/e.png" id="3_dnlj3"]
@@ -14,12 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://lo0kkeq3dyn8" path="res://Assets/Image/fire/end/burning_end_3.png" id="8_dclky"]
 [ext_resource type="Texture2D" uid="uid://d11xm7w7w6hg7" path="res://Assets/Image/fire/loops/burning_loop_3.png" id="8_deku0"]
 [ext_resource type="Texture2D" uid="uid://e1mpgeov2eoy" path="res://Assets/Image/fire/start/burning_start_3.png" id="9_sq1fs"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1wrc"]
-size = Vector2(130, 30)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ab1sy"]
-radius = 66.0303
+[ext_resource type="Texture2D" uid="uid://w1ngpdioppew" path="res://Assets/Image/light3.png" id="13_f254g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghbuc"]
 size = Vector2(28, 52)
@@ -413,43 +409,30 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1wrc"]
+size = Vector2(90, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bfyf"]
+size = Vector2(84, 136)
+
 [node name="Balloon" type="CharacterBody2D"]
 collision_layer = 17
 script = ExtResource("1_pthr5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.219608, 1, 0.211765, 0.498039)
-position = Vector2(2, 25.4999)
-scale = Vector2(1.03125, 2.05469)
-texture = ExtResource("1_caf5o")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 142)
-shape = SubResource("RectangleShape2D_e1wrc")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -40)
-shape = SubResource("CircleShape2D_ab1sy")
-
 [node name="Candle" type="Area2D" parent="."]
-position = Vector2(0, 105)
+position = Vector2(-5, 86)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("2_le14k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Candle"]
+position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_ghbuc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Candle"]
+visible = false
 scale = Vector2(0.15625, 0.34375)
 texture = ExtResource("1_caf5o")
-
-[node name="InteractSprite" type="Sprite2D" parent="Candle"]
-visible = false
-scale = Vector2(0.42, 0.42)
-texture = ExtResource("3_dnlj3")
-script = ExtResource("3_2tvjg")
-path = "interact"
 
 [node name="fire" type="AnimatedSprite2D" parent="Candle"]
 texture_filter = 1
@@ -457,3 +440,31 @@ position = Vector2(-2, -52)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_f87jf")
 animation = &"end_3"
+
+[node name="light" type="PointLight2D" parent="Candle"]
+position = Vector2(-1, -27)
+color = Color(1, 0.533333, 0, 1)
+texture = ExtResource("13_f254g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 22)
+scale = Vector2(2.86486, 4.30795)
+texture = ExtResource("2_l3j2e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 138)
+shape = SubResource("RectangleShape2D_e1wrc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -23)
+shape = SubResource("RectangleShape2D_4bfyf")
+
+[node name="InteractSprite" type="Sprite2D" parent="."]
+visible = false
+z_as_relative = false
+position = Vector2(-5, 86)
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("3_dnlj3")
+script = ExtResource("3_2tvjg")
+path = "interact"

@@ -18,6 +18,7 @@ var Currency = 0
 var max_enemies = 1
 var last_spawned_meteor_msec = Time.get_ticks_msec()
 var last_spawned_enemy_msec = Time.get_ticks_msec()
+var last_max_enemy = Time.get_ticks_msec()
 
 var Stats = {
 	"MaxHP" = {
@@ -173,15 +174,18 @@ func _process(delta):
 			)
 			add_child(meteor)
 			
-	max_enemies = Time.get_ticks_msec() / 1000 / 60 + 1
-	
+	if true:
+		var msec = Time.get_ticks_msec()
+		if msec - last_max_enemy >= (60 * 1000) / 2:
+			last_max_enemy = msec
+			max_enemies += 1
+		
 	#var btm_limit = background.global_position.y + background.texture.get_size().y * background.scale.y
 	#($Camera2D as Camera2D).limit_bottom = btm_limit
 	#($Player/PhantomCamera2D as PhantomCamera2D).limit_bottom = btm_limit
 
 func _ready():
 	#($Player/PhantomCamera2D as PhantomCamera2D).
-	
 	
 	ALGlobal.World = self
 	for i in [-1, 1]:
@@ -199,8 +203,8 @@ func _ready():
 				GameOver("your bloon sank!")
 			elif body is Player:
 				GameOver("you sank!")
-			else:
-				assert(false)
+			#else:
+				#assert(false)
 		)
 
 func spawn_enemy(enem):

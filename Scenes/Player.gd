@@ -19,6 +19,7 @@ var jetpack_fuel = max_jetpack_fuel:
 		$JetpackBar.value = v
 var can_double_jump = false
 var last_dash_msec = Time.get_ticks_msec()
+var last_step_msec = Time.get_ticks_msec()
 
 func SetWeapon(name):
 	$Gun.visible = false
@@ -59,12 +60,13 @@ func _process(delta):
 	weapon.look_at(get_global_mouse_position())
 	if Input.is_action_pressed("fire"):
 		weapon.Fire()
+	if is_on_floor():
+		can_double_jump = true
 
 func AddVelocity(vel):
 	added_velocity += vel
 
 func _physics_process(delta):
-	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
@@ -74,11 +76,11 @@ func _physics_process(delta):
 		if not is_on_floor():
 			can_double_jump = false
 		ALGlobal.PlayAudio(preload("res://Assets/SFX/PlayerJump.wav"), "SFX")
-		velocity.y = JUMP_VELOCITY * ALGlobal.World.GetStatValue("JumpHeight")
+		velocity.y += JUMP_VELOCITY * ALGlobal.World.GetStatValue("JumpHeight")
 	
 		
 	if Input.is_action_pressed("jetpack") and jetpack_fuel > 0:
-		velocity.y = -350 * ALGlobal.World.GetStatValue("JPSpeed")
+		velocity.y += -35 * ALGlobal.World.GetStatValue("JPSpeed")
 		jetpack_fuel -= 1
 	
 	var direction = Vector2.ZERO
@@ -89,14 +91,31 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_down"):
 		direction += Vector2.DOWN
 		
+	if true:
+		var msec = Time.get_ticks_msec()
+		if is_on_floor() and (not direction.is_zero_approx()) and (msec - last_step_msec >= 400):
+			last_step_msec = msec
+			ALGlobal.PlayAudio(preload("res://Assets/SFX/footstep.wav"), "SFX")
+		
 	if Input.is_action_just_pressed("dash"):
 		var msec = Time.get_ticks_msec()
 		if (msec - last_dash_msec) >= 3000:
 			last_dash_msec = msec
-			var vel = 400 * Input.get_vector("move_left", "move_right", "jetpack", "move_down") #global_position.direction_to(get_global_mouse_position())
-			added_velocity += vel
+			ALGlobal.PlayAudio(preload("res://Assets/SFX/dash.wav"), "SFX")
+			var vel = Vector2.ZERO
+			if Input.is_action_pressed("move_left"):
+				vel += Vector2.LEFT
+			if Input.is_action_pressed("move_right"):
+				vel += Vector2.RIGHT
 			if Input.is_action_pressed("jetpack"):
-				velocity.y = -1000
+				vel += Vector2.UP
+			if Input.is_action_pressed("move_down"):
+				vel += Vector2.DOWN
+			vel *= 500
+			added_velocity += vel
+			velocity.y = vel.y
+			#if Input.is_action_pressed("jetpack"):
+				#velocity.y = -1000
 		
 	var speed = SPEED * ALGlobal.World.GetStatValue("MoveSpeed")
 	velocity.x = added_velocity.x
@@ -108,6 +127,6 @@ func _physics_process(delta):
 		#velocity.x = move_toward(velocity.x, 0, speed)
 		#velocity.y = move_toward(velocity.y, 0, speed)
 		
-	added_velocity = added_velocity.move_toward(Vector2.ZERO, delta * speed)
+	added_velocity = added_velocity.move_toward(Vector2.ZERO, delta * SPEED * 2)
 
 	move_and_slide()
