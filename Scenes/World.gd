@@ -50,7 +50,7 @@ var Stats = {
 	},
 	"DMGMulti" = {
 		Name = "DMG Mult.",
-		ValueFormat = "%dx",
+		ValueFormat = "%.1fx",
 		BaseValue = 1,
 		BaseCost = 40,
 		Level = 0,
@@ -59,16 +59,16 @@ var Stats = {
 	},
 	"MoveSpeed" = {
 		Name = "Move Speed",
-		ValueFormat = "%dx",
+		ValueFormat = "%.1fx",
 		BaseValue = 1,
 		BaseCost = 35,
 		Level = 0,
-		ValueAdd = 0.05,
+		ValueAdd = 0.1,
 		CostAdd = 15
 	},
 	"ATKSpeed" = {
 		Name = "ATK Speed",
-		ValueFormat = "%dx",
+		ValueFormat = "%.1fx",
 		BaseValue = 1,
 		BaseCost = 40,
 		Level = 0,
@@ -77,7 +77,7 @@ var Stats = {
 	},
 	"BulletSpeed" = {
 		Name = "Bullet Speed",
-		ValueFormat = "%dx",
+		ValueFormat = "%.1fx",
 		BaseValue = 1,
 		BaseCost = 15,
 		Level = 0,
@@ -86,7 +86,7 @@ var Stats = {
 	},
 	"JumpHeight" = {
 		Name = "Jump Height",
-		ValueFormat = "%dx",
+		ValueFormat = "%.1fx",
 		BaseValue = 1,
 		BaseCost = 15,
 		Level = 0,
@@ -95,7 +95,7 @@ var Stats = {
 	},
 	"JPSpeed" = {
 		Name = "Jetpack Speed",
-		ValueFormat = "%dx",
+		ValueFormat = "%.1fx",
 		BaseValue = 1,
 		BaseCost = 20,
 		Level = 0,
@@ -104,7 +104,7 @@ var Stats = {
 	},
 	"JPFuelCap" = {
 		Name = "Jetpack Cap.",
-		ValueFormat = "%dx",
+		ValueFormat = "%.1fx",
 		BaseValue = 1,
 		BaseCost = 40,
 		Level = 0,
@@ -113,11 +113,11 @@ var Stats = {
 	},
 	"JPRegen" = {
 		Name = "Jetpack Regen",
-		ValueFormat = "%dx/s",
+		ValueFormat = "%.1fx",
 		BaseValue = 1,
 		BaseCost = 50,
 		Level = 0,
-		ValueAdd = 0.2,
+		ValueAdd = 0.1,
 		CostAdd = 15
 	}
 }
@@ -126,7 +126,7 @@ func GetStatValue(stat_name: String):
 	var stat = ALGlobal.World.Stats[stat_name]
 	var value = stat.BaseValue
 	for i in stat.Level:
-		value += stat.BaseValue * stat.ValueMultiplier
+		value += stat.ValueAdd #+* stat.ValueMultiplier
 	return value
 
 func UpgradeStat(stat_name: String):

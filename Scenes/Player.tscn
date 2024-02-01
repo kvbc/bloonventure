@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://dyqc1r27twitx"]
+[gd_scene load_steps=69 format=3 uid="uid://dyqc1r27twitx"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_5ryka"]
 [ext_resource type="Texture2D" uid="uid://xvu0ghdubrij" path="res://Assets/Image/new/character.png" id="2_1fyxp"]
@@ -14,12 +14,27 @@
 [ext_resource type="Texture2D" uid="uid://8mulr3plsewn" path="res://Assets/Image/fire/start/burning_start_1.png" id="9_d184w"]
 [ext_resource type="Texture2D" uid="uid://3ee2mgbpxm4n" path="res://Assets/Image/fire/start/burning_start_2.png" id="10_jphim"]
 [ext_resource type="Texture2D" uid="uid://e1mpgeov2eoy" path="res://Assets/Image/fire/start/burning_start_3.png" id="11_6xniw"]
+[ext_resource type="Texture2D" uid="uid://c5dmujjuo3igp" path="res://Assets/Image/MoveSpeed.png" id="15_wpidl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14k60"]
 size = Vector2(46, 44)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_75rhq"]
 radius = 56.2939
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w450l"]
+bg_color = Color(0.403922, 0.215686, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ww1p"]
+bg_color = Color(1, 0.568627, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1mkk0"]
 atlas = ExtResource("3_1p0ui")
@@ -435,12 +450,12 @@ value = 100.0
 show_percentage = false
 
 [node name="JetpackBar" type="ProgressBar" parent="."]
-visible = false
-self_modulate = Color(1, 0.568627, 0, 1)
 offset_left = -29.0
 offset_top = 42.0
 offset_right = 33.0
 offset_bottom = 48.0
+theme_override_styles/background = SubResource("StyleBoxFlat_w450l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2ww1p")
 value = 100.0
 show_percentage = false
 
@@ -486,3 +501,9 @@ unique_name_in_owner = true
 [node name="Shotgun" parent="." instance=ExtResource("4_u1eob")]
 unique_name_in_owner = true
 visible = false
+
+[node name="hasdash" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -59)
+scale = Vector2(0.174419, 0.174419)
+texture = ExtResource("15_wpidl")

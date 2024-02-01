@@ -1,7 +1,7 @@
 extends Enemy
 
 var BULLET_SPEED = 200
-var FIRE_DELAY = 2
+var FIRE_DELAY = 2.5
 var SPEED = 100
 
 func _physics_process(delta):

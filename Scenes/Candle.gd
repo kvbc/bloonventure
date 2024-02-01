@@ -20,7 +20,8 @@ func _ready():
 		elif $fire.animation.begins_with("end"):
 			$fire.visible = false
 			$light.visible = false
-			loop.stop()
+			if loop != null:
+				loop.stop()
 	)
 
 func _process(delta):

@@ -33,9 +33,9 @@ func update_stat(stat_name: String):
 	if "Level" in stat:
 		var value = stat.BaseValue
 		for i in stat.Level:
-			value += stat.BaseValue + stat.ValueAdd #* stat.ValueMultiplier
-			cost += stat.BaseCost + stat.CostAdd #* stat.CostMultiplier
-		var next_value = value + stat.BaseValue + stat.ValueAdd #* stat.ValueMultiplier
+			value += stat.ValueAdd #* stat.ValueMultiplier
+			cost += stat.CostAdd #* stat.CostMultiplier
+		var next_value = value + stat.ValueAdd #* stat.ValueMultiplier
 		
 		lvl_label.text = "" if stat.Level == 0 else str(stat.Level + 1)
 		label.text = "[center]%s\n%s >> [color=green]%s[/color][/center]" % [stat.Name, stat.ValueFormat % value, stat.ValueFormat % next_value]

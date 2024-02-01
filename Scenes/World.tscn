@@ -1,7 +1,6 @@
 [gd_scene load_steps=56 format=3 uid="uid://c6n1nv4ue3m28"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
-[ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
 [ext_resource type="PackedScene" uid="uid://dcdm6e0oma3o0" path="res://Scenes/Balloon.tscn" id="3_rg2om"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="4_afosw"]
 [ext_resource type="PackedScene" uid="uid://dyqc1r27twitx" path="res://Scenes/Player.tscn" id="4_demyx"]
@@ -24,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://c8olr4mp3uwak" path="res://Assets/Image/new/dmg.png" id="20_4voqk"]
 [ext_resource type="Texture2D" uid="uid://b7hpo6h6rgnma" path="res://Assets/Image/sheet_white1x.png" id="21_6l1dj"]
 [ext_resource type="Texture2D" uid="uid://cqykxworvebsx" path="res://Assets/Image/new/speed.png" id="21_w0e2i"]
+[ext_resource type="Texture2D" uid="uid://cyb2xlxnursar" path="res://Assets/Image/help/candle.PNG" id="21_xvipy"]
 [ext_resource type="Script" path="res://Scenes/Shop.gd" id="22_eqh52"]
 [ext_resource type="Texture2D" uid="uid://cgkgch5q5myal" path="res://Assets/Image/new/dmgspeed.png" id="23_cj31i"]
 [ext_resource type="StyleBox" uid="uid://dumq0jebmsxqb" path="res://Styles/ShopPanel.tres" id="24_5gqsd"]
@@ -807,6 +807,7 @@ theme_override_constants/separation = 20
 [node name="Label" type="RichTextLabel" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0.360784)
 layout_mode = 2
+size_flags_vertical = 6
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_4f14d")
 theme_override_font_sizes/normal_font_size = 32
@@ -818,7 +819,9 @@ scroll_active = false
 [node name="TextureRect" type="TextureRect" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("2_nf8dn")
+size_flags_stretch_ratio = 2.0
+texture = ExtResource("21_xvipy")
+expand_mode = 3
 stretch_mode = 5
 
 [node name="NextButton" type="Button" parent="UI/HelpMenu/MarginContainer/VBoxContainer/Pages/HBoxContainer"]
@@ -1059,6 +1062,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="HPRegen" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
@@ -1134,6 +1138,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="DMGMulti" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
@@ -1208,6 +1213,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="MoveSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
@@ -1282,6 +1288,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="JumpHeight" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
@@ -1355,6 +1362,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="ATKSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
@@ -1429,6 +1437,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="BulletSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
@@ -1503,6 +1512,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="JPFuelCap" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
@@ -1576,6 +1586,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="JPSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
@@ -1649,6 +1660,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="JPRegen" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
@@ -1722,6 +1734,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="Balon" type="Panel" parent="UI"]

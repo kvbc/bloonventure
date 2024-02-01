@@ -2,7 +2,7 @@ extends Enemy
 
 var SPEED = 100
 var CHARGE_SPEED = 600
-var CHARGE_DELAY = 3 # sec
+var CHARGE_DELAY = 2 # sec
 
 func charge():
 	ALGlobal.PlayAudio(preload("res://Assets/SFX/scream.wav"), "SFX",0,-5)

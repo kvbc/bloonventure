@@ -9,9 +9,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var candle_area: Area2D = %CandleArea
 @onready var ReloadBar: ProgressBar = $ReloadBar
 var added_velocity = Vector2.ZERO
-var max_jetpack_fuel = 100:
+var max_jetpack_fuel:
 	get:
-		return max_jetpack_fuel * (1 if ALGlobal.World == null else ALGlobal.World.GetStatValue("JPFuelCap"))
+		return 100 * (1 if ALGlobal.World == null else ALGlobal.World.GetStatValue("JPFuelCap"))
 	set(v):
 		max_jetpack_fuel = v
 		$JetpackBar.max_value = v
@@ -74,7 +74,7 @@ func _ready():
 
 func _process(delta):
 	var msec = Time.get_ticks_msec()
-	$DashBar.value = (1 - ((msec - last_dash_msec) / 1000.0)) * $DashBar.max_value
+	$DashBar.value = (1 - ((msec - last_dash_msec) / 2000.0)) * $DashBar.max_value
 	$DashBar.visible = $DashBar.value > 0
 	weapon.look_at(get_global_mouse_position())
 	if Input.is_action_pressed("fire"):
@@ -82,9 +82,10 @@ func _process(delta):
 	if is_on_floor():
 		can_double_jump = true
 	queue_redraw()
+	max_jetpack_fuel = max_jetpack_fuel
 
-func AddVelocity(vel):
-	added_velocity += vel
+func AddVelocity(velcty):
+	added_velocity += velcty
 
 func _draw():
 	if grapple_col != null and not grapple_col.is_empty():
@@ -143,25 +144,27 @@ func _physics_process(delta):
 			last_step_msec = msec
 			ALGlobal.PlayAudio(preload("res://Assets/SFX/footstep.wav"), "SFX")
 		
-	if Input.is_action_just_pressed("dash"):
+	if true:
 		var msec = Time.get_ticks_msec()
-		if (msec - last_dash_msec) >= 1000:
-			last_dash_msec = msec
-			ALGlobal.PlayAudio(preload("res://Assets/SFX/dash.wav"), "SFX")
-			var vel = Vector2.ZERO
-			if Input.is_action_pressed("move_left"):
-				vel += Vector2.LEFT
-			if Input.is_action_pressed("move_right"):
-				vel += Vector2.RIGHT
-			if Input.is_action_pressed("jetpack"):
-				vel += Vector2.UP
-			if Input.is_action_pressed("move_down"):
-				vel += Vector2.DOWN
-			vel *= 500
-			added_velocity += vel
-			velocity.y = vel.y
-			#if Input.is_action_pressed("jetpack"):
-				#velocity.y = -1000
+		$hasdash.visible = (msec - last_dash_msec) >= 2000
+		if (msec - last_dash_msec) >= 2000:
+			if Input.is_action_just_pressed("dash"):
+				last_dash_msec = msec
+				ALGlobal.PlayAudio(preload("res://Assets/SFX/dash.wav"), "SFX")
+				var vel = Vector2.ZERO
+				if Input.is_action_pressed("move_left"):
+					vel += Vector2.LEFT
+				if Input.is_action_pressed("move_right"):
+					vel += Vector2.RIGHT
+				if Input.is_action_pressed("jetpack"):
+					vel += Vector2.UP
+				if Input.is_action_pressed("move_down"):
+					vel += Vector2.DOWN
+				vel *= 500
+				added_velocity += vel
+				velocity.y = vel.y
+				#if Input.is_action_pressed("jetpack"):
+					#velocity.y = -1000
 		
 	var speed = SPEED * ALGlobal.World.GetStatValue("MoveSpeed")
 	velocity.x = added_velocity.x

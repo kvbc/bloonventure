@@ -12,7 +12,7 @@ func _ready():
 	$playerArea.body_entered.connect(func(body):
 		if body is Player:
 			body.get_node("EntityHealthComponent").Health -= 35
-			body.AddVelocity(dir * SPEED / 2)
+			body.AddVelocity(dir * SPEED)
 	)
 	
 	$fire_left.play()
