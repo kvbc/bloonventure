@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ohjxlrcxtpbm"]
+[gd_scene load_steps=7 format=3 uid="uid://ohjxlrcxtpbm"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/ShooterEnemy.gd" id="1_321fe"]
 [ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="1_ga1ry"]
@@ -9,6 +9,11 @@ size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5soyt"]
 size = Vector2(76, 70)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xg33"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="ShooterEnemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -31,3 +36,11 @@ shape = SubResource("RectangleShape2D_5soyt")
 self_modulate = Color(0.278431, 0.278431, 0.278431, 1)
 scale = Vector2(0.484375, 0.484375)
 texture = ExtResource("1_ga1ry")
+
+[node name="level" type="Label" parent="."]
+offset_left = 25.0
+offset_top = -43.0
+offset_right = 65.0
+offset_bottom = 8.0
+text = "3"
+label_settings = SubResource("LabelSettings_0xg33")

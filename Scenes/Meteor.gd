@@ -15,6 +15,8 @@ func _ready():
 			body.AddVelocity(dir * SPEED / 2)
 	)
 	
+	$fire_left.play()
+	$fire_right.play()
 	$fire_left.visible = dir.x < 0 
 	$fire_right.visible = dir.x > 0 
 	

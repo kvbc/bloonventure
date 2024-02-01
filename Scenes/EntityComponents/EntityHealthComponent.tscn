@@ -1,6 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://b72elkpu22b2g"]
+[gd_scene load_steps=5 format=3 uid="uid://b72elkpu22b2g"]
 
 [ext_resource type="Script" path="res://Scenes/EntityComponents/EntityHealthComponent.gd" id="1_dhndm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0rc7"]
+bg_color = Color(0.47451, 0, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3vdh"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [sub_resource type="LabelSettings" id="LabelSettings_rm54u"]
 font_size = 32
@@ -11,15 +25,18 @@ outline_color = Color(0.545098, 0.12549, 0.12549, 1)
 script = ExtResource("1_dhndm")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-self_modulate = Color(1, 0, 0, 1)
+light_mask = 0
 offset_left = -27.0
 offset_top = -37.0
 offset_right = 29.0
 offset_bottom = -28.0
+theme_override_styles/background = SubResource("StyleBoxFlat_x0rc7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v3vdh")
 value = 100.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="."]
+light_mask = 0
 offset_left = 12.0
 offset_top = -45.0
 offset_right = 33.0

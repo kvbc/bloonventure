@@ -459,7 +459,7 @@ position = Vector2(-30, -6)
 rotation = 0.312772
 scale = Vector2(5.6414, 5.6414)
 sprite_frames = SubResource("SpriteFrames_pa2qw")
-frame_progress = 0.466333
+frame_progress = 0.157002
 
 [node name="fire_left" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -468,7 +468,7 @@ position = Vector2(30, -14)
 rotation = -0.345096
 scale = Vector2(5.6414, 5.6414)
 sprite_frames = SubResource("SpriteFrames_pa2qw")
-frame_progress = 0.299354
+frame_progress = 0.990025
 flip_h = true
 flip_v = true
 

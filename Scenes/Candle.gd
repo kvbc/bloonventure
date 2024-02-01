@@ -4,6 +4,7 @@ extends Area2D
 var can_interact = false
 @onready var interact_sprite: Sprite2D = get_node("../InteractSprite")
 var fire_anim = 0
+var loop
 
 func SetCanInteract(can: bool):
 	can_interact = can
@@ -15,10 +16,11 @@ func _ready():
 	$fire.animation_finished.connect(func():
 		if $fire.animation.begins_with("start"):
 			$fire.play("loop_" + str(fire_anim))
-			ALGlobal.PlayAudio(preload("res://Assets/SFX/candle_loop.wav"), "SFX", 0, 3)
+			loop = ALGlobal.PlayAudio(preload("res://Assets/SFX/candle_loop.wav"), "SFX", 0, 3)
 		elif $fire.animation.begins_with("end"):
 			$fire.visible = false
 			$light.visible = false
+			loop.stop()
 	)
 
 func _process(delta):

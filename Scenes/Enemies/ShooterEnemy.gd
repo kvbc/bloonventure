@@ -1,8 +1,8 @@
 extends Enemy
 
-const BULLET_SPEED = 200
-const FIRE_DELAY = 2.5
-const SPEED = 100
+var BULLET_SPEED = 200
+var FIRE_DELAY = 2
+var SPEED = 100
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
@@ -15,6 +15,16 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _ready():
+	$EntityHealthComponent.MaxHealth = 150
+	$EntityHealthComponent.Health = 150
+	
+	var lvl = ALGlobal.World.EnemyLevel
+	$level.text = "" if lvl == 1 else str(lvl)
+	var mult = pow(ALGlobal.World.EnemyLevelMarkiplier, lvl)
+	SPEED *= mult
+	BULLET_SPEED *= mult
+	FIRE_DELAY /= mult
+	
 	var timer = Timer.new()
 	timer.autostart = true
 	timer.wait_time = FIRE_DELAY
@@ -29,5 +39,5 @@ func _ready():
 
 	$playerArea.body_entered.connect(func(body):
 		if body is Player:
-			body.get_node("EntityHealthComponent").Health -= 25
+			body.get_node("EntityHealthComponent").Health -= 15
 	)

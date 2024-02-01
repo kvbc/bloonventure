@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name PlayerBullet
 
+var dmg = 1
+
 func _process(delta):
 	look_at(global_position + velocity)
 
@@ -11,7 +13,7 @@ func _physics_process(delta):
 		var collider = col.get_collider()
 		if collider is Enemy:
 			var health_comp = collider.get_node("EntityHealthComponent") as EntityHealthComponent
-			health_comp.Health -= 15 * ALGlobal.World.GetStatValue("DMGMulti")
+			health_comp.Health -= dmg * ALGlobal.World.GetStatValue("DMGMulti")
 		elif collider is EnemyBullet:
 			collider.queue_free()
 			

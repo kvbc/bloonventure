@@ -20,6 +20,8 @@ var jetpack_fuel = max_jetpack_fuel:
 var can_double_jump = false
 var last_dash_msec = Time.get_ticks_msec()
 var last_step_msec = Time.get_ticks_msec()
+var jpanim = 0
+var fireloops = {}
 
 func SetWeapon(name):
 	$Gun.visible = false
@@ -53,9 +55,23 @@ func _ready():
 	)
 	add_child(hpregen_timer)
 
+	for fire in [$fireleft, $fireright]:
+		fire.visible = false
+		fire.speed_scale = 3
+		fire.animation_finished.connect(func():
+			if fire.animation.begins_with("start"):
+				fire.play("loop_" + str(jpanim))
+				var loop = ALGlobal.PlayAudio(preload("res://Assets/SFX/candle_loop.wav"), "SFX", 0, 3)
+				fireloops[fire] = loop
+			elif fire.animation.begins_with("end"):
+				fire.visible = false
+				if fire in fireloops:
+					fireloops[fire].stop()
+		)
+
 func _process(delta):
 	var msec = Time.get_ticks_msec()
-	$DashBar.value = (1 - ((msec - last_dash_msec) / 3000.0)) * $DashBar.max_value
+	$DashBar.value = (1 - ((msec - last_dash_msec) / 1000.0)) * $DashBar.max_value
 	$DashBar.visible = $DashBar.value > 0
 	weapon.look_at(get_global_mouse_position())
 	if Input.is_action_pressed("fire"):
@@ -80,8 +96,17 @@ func _physics_process(delta):
 	
 		
 	if Input.is_action_pressed("jetpack") and jetpack_fuel > 0:
+		if jpanim == 0:
+			jpanim = randi_range(2,3)
+			for fire in [$fireleft, $fireright]:
+				fire.visible = true
+				fire.play("start_" + str(jpanim))
 		velocity.y += -35 * ALGlobal.World.GetStatValue("JPSpeed")
-		jetpack_fuel -= 1
+		jetpack_fuel -= 100 * delta
+	elif jpanim != 0:
+		for fire in [$fireleft, $fireright]:
+			fire.play("end_" + str(jpanim))
+		jpanim = 0
 	
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("move_left"):
@@ -99,7 +124,7 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("dash"):
 		var msec = Time.get_ticks_msec()
-		if (msec - last_dash_msec) >= 3000:
+		if (msec - last_dash_msec) >= 1000:
 			last_dash_msec = msec
 			ALGlobal.PlayAudio(preload("res://Assets/SFX/dash.wav"), "SFX")
 			var vel = Vector2.ZERO

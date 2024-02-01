@@ -6,6 +6,9 @@ class_name Balloon
 
 var died = false
 
+func IsOnScreen():
+	return $VisibleOnScreenNotifier2D.is_on_screen()
+
 func Die():
 	if not died:
 		died = true
@@ -14,5 +17,5 @@ func Die():
 		explosion.global_position = global_position
 		get_tree().current_scene.add_child(explosion)
 		Engine.time_scale = 0.25
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(2).timeout
 		ALGlobal.World.GameOver("Your bloon exploded due to high pressure!")

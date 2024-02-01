@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://lwfdcy1kkh8n"]
+[gd_scene load_steps=8 format=3 uid="uid://lwfdcy1kkh8n"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/ChargerEnemy.gd" id="1_1off3"]
 [ext_resource type="PackedScene" uid="uid://b72elkpu22b2g" path="res://Scenes/EntityComponents/EntityHealthComponent.tscn" id="3_gdiap"]
@@ -10,6 +10,11 @@ size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5424l"]
 size = Vector2(76, 70)
+
+[sub_resource type="LabelSettings" id="LabelSettings_orsai"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="ChargerEnemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -36,3 +41,11 @@ texture = ExtResource("3_k5c5m")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.670886, 0.670886)
 texture = ExtResource("4_tw4oh")
+
+[node name="level" type="Label" parent="."]
+offset_left = 25.0
+offset_top = -43.0
+offset_right = 65.0
+offset_bottom = 8.0
+text = "3"
+label_settings = SubResource("LabelSettings_orsai")

@@ -2,7 +2,7 @@ class_name Gun
 extends Weapon
 
 const BULLET_SPEED = 500
-const FIRE_DELAY = 0.25 # seconds
+const FIRE_DELAY = 0.5 # seconds
 
 var last_fire_msec = Time.get_ticks_msec()
 
@@ -30,5 +30,6 @@ func Fire():
 		ALGlobal.PlayAudio(preload("res://Assets/SFX/gun.wav"), "SFX")
 		var bullet = preload("res://Scenes/Bullets/PlayerBullet.tscn").instantiate()
 		bullet.global_position = global_position
+		bullet.dmg = 25
 		bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * BULLET_SPEED * ALGlobal.World.GetStatValue("BulletSpeed")
 		get_tree().current_scene.add_child(bullet)

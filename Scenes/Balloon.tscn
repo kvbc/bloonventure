@@ -439,7 +439,7 @@ texture_filter = 1
 position = Vector2(-2, -52)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_f87jf")
-animation = &"end_3"
+animation = &"end_1"
 
 [node name="light" type="PointLight2D" parent="Candle"]
 position = Vector2(-1, -27)
@@ -468,3 +468,7 @@ scale = Vector2(0.42, 0.42)
 texture = ExtResource("3_dnlj3")
 script = ExtResource("3_2tvjg")
 path = "interact"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 23)
+scale = Vector2(5.3, 13.3)

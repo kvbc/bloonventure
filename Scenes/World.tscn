@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c6n1nv4ue3m28"]
+[gd_scene load_steps=55 format=3 uid="uid://c6n1nv4ue3m28"]
 
 [ext_resource type="Script" path="res://Scenes/World.gd" id="1_d6njh"]
 [ext_resource type="Texture2D" uid="uid://dr6ldcmtf174v" path="res://icon.svg" id="2_nf8dn"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dyqc1r27twitx" path="res://Scenes/Player.tscn" id="4_demyx"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_1krxd"]
 [ext_resource type="Texture2D" uid="uid://g1eqhjh7oldh" path="res://Assets/Image/new/background.png" id="6_36n6q"]
-[ext_resource type="Texture2D" uid="uid://dlwwo6tne67et" path="res://Assets/Image/Currency.png" id="7_2ytqu"]
 [ext_resource type="Script" path="res://Scenes/Currency.gd" id="7_hxbw8"]
 [ext_resource type="AudioStream" uid="uid://br83eluw3ngv8" path="res://Assets/Music/InGame.wav" id="7_p0ws8"]
 [ext_resource type="Texture2D" uid="uid://cbr0frgu7ju3" path="res://Assets/Image/new/pistol.png" id="8_4spxm"]
@@ -19,21 +18,26 @@
 [ext_resource type="Texture2D" uid="uid://b36jjuamrcidm" path="res://Assets/Image/musicOn.png" id="11_sov7a"]
 [ext_resource type="Texture2D" uid="uid://b5jdk4acvfmxn" path="res://Assets/Image/audioOn.png" id="11_wsnrq"]
 [ext_resource type="Texture2D" uid="uid://qx841qlk7qm6" path="res://Assets/Image/question.png" id="12_nv1pe"]
-[ext_resource type="Texture2D" uid="uid://b6bgutohhcokv" path="res://Assets/Image/JumpHeight.png" id="16_1vbcl"]
+[ext_resource type="Script" path="res://Scenes/GameOver.gd" id="12_rfceb"]
 [ext_resource type="Texture2D" uid="uid://dxiortvuvp1in" path="res://Assets/Image/new/heart.png" id="18_2dsgo"]
-[ext_resource type="Texture2D" uid="uid://batlyad6jckle" path="res://Assets/Image/JPFuelCap.png" id="18_xg63x"]
 [ext_resource type="Texture2D" uid="uid://6uuwix2pi0cl" path="res://Assets/Image/new/heartregeneration.png" id="19_irsjf"]
-[ext_resource type="Texture2D" uid="uid://umfkboy3cdnm" path="res://Assets/Image/JPSpeed.png" id="19_jntit"]
 [ext_resource type="Texture2D" uid="uid://c8olr4mp3uwak" path="res://Assets/Image/new/dmg.png" id="20_4voqk"]
-[ext_resource type="Texture2D" uid="uid://fqg4i5gj0dk7" path="res://Assets/Image/JPRegen.png" id="21_0gftb"]
 [ext_resource type="Texture2D" uid="uid://b7hpo6h6rgnma" path="res://Assets/Image/sheet_white1x.png" id="21_6l1dj"]
 [ext_resource type="Texture2D" uid="uid://cqykxworvebsx" path="res://Assets/Image/new/speed.png" id="21_w0e2i"]
+[ext_resource type="Script" path="res://Scenes/Shop.gd" id="22_eqh52"]
 [ext_resource type="Texture2D" uid="uid://cgkgch5q5myal" path="res://Assets/Image/new/dmgspeed.png" id="23_cj31i"]
+[ext_resource type="StyleBox" uid="uid://dumq0jebmsxqb" path="res://Styles/ShopPanel.tres" id="24_5gqsd"]
 [ext_resource type="Script" path="res://Scenes/HelpMenu.gd" id="24_d7w0a"]
 [ext_resource type="Texture2D" uid="uid://4vovggsl3ain" path="res://Assets/Image/new/bullet speed.png" id="24_pm8gn"]
+[ext_resource type="Texture2D" uid="uid://b2ktf1sgt72yi" path="res://Assets/Image/new_new/currency.png" id="26_l10cr"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_d66o5"]
+[ext_resource type="Texture2D" uid="uid://dxsdk5ol4cnab" path="res://Assets/Image/new_new/jetpack_capacity.png" id="29_s7l3c"]
+[ext_resource type="Texture2D" uid="uid://djdoud5vwajyf" path="res://Assets/Image/new_new/jump_height.png" id="29_vhuwt"]
 [ext_resource type="Texture2D" uid="uid://b6cu68x7t7hf3" path="res://Assets/Image/GUI_4x.png" id="30_ep13y"]
 [ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="30_qigw3"]
+[ext_resource type="Texture2D" uid="uid://c5qnxgbstaihg" path="res://Assets/Image/balon.png" id="33_2gc1r"]
+[ext_resource type="Texture2D" uid="uid://ybn335wj5tb" path="res://Assets/Image/new_new/jetpack_speed.png" id="33_8qva5"]
+[ext_resource type="Texture2D" uid="uid://cxu0mtydgl1np" path="res://Assets/Image/new_new/jetpack_regen.png" id="34_dhxu4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ijlh"]
 size = Vector2(301.208, 21.7127)
@@ -62,6 +66,13 @@ load_path = "res://.godot/imported/iconsDefault.png-74ba4e442e7e6a2e696b5378ec97
 atlas = SubResource("CompressedTexture2D_s0ipl")
 region = Rect2(576, 192, 64, 64)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rq8wl"]
+bg_color = Color(1, 1, 1, 0.380392)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv8y2"]
 atlas = ExtResource("21_6l1dj")
 region = Rect2(0, 250, 50, 50)
@@ -81,6 +92,24 @@ region = Rect2(399, 398, 52, 53)
 font_size = 64
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2inb"]
+bg_color = Color(0, 0, 0, 0.164706)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5e72a"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="Curve" id="Curve_j66mb"]
 
@@ -191,6 +220,146 @@ metadata/_edit_group_ = true
 [node name="sky8" type="Sprite2D" parent="Backgrounds/Background"]
 texture_filter = 1
 position = Vector2(-0.817019, -496.591)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky9" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -528.771)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky10" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -565.893)
+texture = ExtResource("6_36n6q")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky11" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -604.24)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky12" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -639.085)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky13" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -672.705)
+texture = ExtResource("6_36n6q")
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky14" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -708.951)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky15" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -745.198)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky16" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -783.195)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky17" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -818.916)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky18" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -856.038)
+texture = ExtResource("6_36n6q")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky19" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -894.385)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky20" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -929.23)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky21" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -962.85)
+texture = ExtResource("6_36n6q")
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky22" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -999.096)
+texture = ExtResource("6_36n6q")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky23" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -1035.34)
+texture = ExtResource("6_36n6q")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 40)
+metadata/_edit_group_ = true
+
+[node name="sky24" type="Sprite2D" parent="Backgrounds/Background"]
+texture_filter = 1
+position = Vector2(-0.817019, -1073.34)
 texture = ExtResource("6_36n6q")
 region_enabled = true
 region_rect = Rect2(0, 0, 300, 40)
@@ -403,6 +572,7 @@ patch_margin_right = 32
 patch_margin_bottom = 32
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+script = ExtResource("12_rfceb")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/GameOver"]
 layout_mode = 1
@@ -448,6 +618,11 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "this is a description"
 
+[node name="TryAgainButton" type="Button" parent="UI/GameOver/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Try Again (R)"
+
 [node name="MainMenuButton" type="Button" parent="UI/GameOver/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -456,8 +631,8 @@ text = "Back to menu"
 [node name="Currency" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 401.0
-offset_bottom = 60.0
+offset_right = 148.0
+offset_bottom = 75.0
 script = ExtResource("7_hxbw8")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Currency"]
@@ -470,18 +645,27 @@ grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Currency/MarginContainer"]
+[node name="Panel" type="Panel" parent="UI/Currency/MarginContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rq8wl")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Currency/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Currency/MarginContainer/Panel"]
 layout_mode = 2
-texture = ExtResource("7_2ytqu")
+offset_right = 95.0
+offset_bottom = 55.0
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/Currency/MarginContainer/Panel/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("26_l10cr")
 expand_mode = 2
 
-[node name="CurrencyLabel" type="Label" parent="UI/Currency/MarginContainer/HBoxContainer"]
+[node name="CurrencyLabel" type="Label" parent="UI/Currency/MarginContainer/Panel/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
 text = "123"
 
 [node name="Audio" type="Control" parent="UI"]
@@ -504,6 +688,7 @@ grow_vertical = 2
 
 [node name="ShopButton" type="Button" parent="UI/Audio/VBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 0, 0, 1)
 custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -514,6 +699,7 @@ expand_icon = true
 
 [node name="MusicButton" type="Button" parent="UI/Audio/VBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(0, 1, 0, 1)
 custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -524,6 +710,7 @@ flat = true
 
 [node name="SFXButton" type="Button" parent="UI/Audio/VBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(0, 1, 1, 1)
 custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -534,6 +721,7 @@ flat = true
 
 [node name="HelpButton" type="Button" parent="UI/Audio/VBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(0.788235, 0.788235, 0.788235, 1)
 custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -663,7 +851,6 @@ flat = true
 
 [node name="Shop" type="NinePatchRect" parent="UI"]
 unique_name_in_owner = true
-visible = false
 texture_filter = 1
 custom_minimum_size = Vector2(250, 0)
 anchors_preset = 11
@@ -681,6 +868,7 @@ patch_margin_right = 32
 patch_margin_bottom = 32
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+script = ExtResource("22_eqh52")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop"]
 layout_mode = 1
@@ -692,11 +880,17 @@ grow_vertical = 2
 
 [node name="ShopCloseButton" type="Button" parent="UI/Shop/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
+self_modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 28
-text = "X"
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 128
+icon = SubResource("AtlasTexture_b18kk")
+flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer"]
 layout_mode = 2
@@ -718,6 +912,7 @@ script = ExtResource("9_ocho8")
 [node name="MaxHP" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
+theme_override_styles/panel = ExtResource("24_5gqsd")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP"]
 layout_mode = 1
@@ -772,28 +967,48 @@ text = "[center]Max HP
 [node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "123"
-icon = ExtResource("7_2ytqu")
+icon = ExtResource("26_l10cr")
+flat = true
 expand_icon = true
 
-[node name="HPRegen" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
-custom_minimum_size = Vector2(50, 100)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen"]
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MaxHP/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer"]
+[node name="HPRegen" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("24_5gqsd")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("19_irsjf")
 expand_mode = 2
 
-[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer/TextureRect"]
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/MarginContainer/HBoxContainer/TextureRect"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 3
@@ -810,43 +1025,64 @@ label_settings = SubResource("LabelSettings_ki4k0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]HP Regen
 1/s >> [color=green]2/s[/color][/center]"
 
-[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "123"
-icon = ExtResource("7_2ytqu")
+icon = ExtResource("26_l10cr")
+flat = true
 expand_icon = true
 
-[node name="DMGMulti" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
-custom_minimum_size = Vector2(50, 100)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti"]
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/HPRegen/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer"]
+[node name="DMGMulti" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("24_5gqsd")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/MarginContainer/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("20_4voqk")
 expand_mode = 2
 
-[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer/TextureRect"]
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/MarginContainer/HBoxContainer/TextureRect"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 3
@@ -863,43 +1099,64 @@ label_settings = SubResource("LabelSettings_ki4k0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]DMG Mult.
 1x >> [color=green]1.2x[/color][/center]"
 
-[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "123"
-icon = ExtResource("7_2ytqu")
+icon = ExtResource("26_l10cr")
+flat = true
 expand_icon = true
 
-[node name="MoveSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
-custom_minimum_size = Vector2(50, 100)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed"]
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/DMGMulti/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer"]
+[node name="MoveSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("24_5gqsd")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/MarginContainer/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("21_w0e2i")
 expand_mode = 2
 
-[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer/TextureRect"]
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/MarginContainer/HBoxContainer/TextureRect"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 3
@@ -916,42 +1173,63 @@ label_settings = SubResource("LabelSettings_ki4k0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]Move Speed
 1x >> [color=green]1.2x[/color][/center]"
 
-[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "123"
-icon = ExtResource("7_2ytqu")
+icon = ExtResource("26_l10cr")
+flat = true
 expand_icon = true
 
-[node name="JumpHeight" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
-custom_minimum_size = Vector2(50, 100)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight"]
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/MoveSpeed/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/HBoxContainer"]
+[node name="JumpHeight" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
-texture = ExtResource("16_1vbcl")
+theme_override_styles/panel = ExtResource("24_5gqsd")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("29_vhuwt")
 expand_mode = 2
 
-[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/HBoxContainer/TextureRect"]
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/MarginContainer/HBoxContainer/TextureRect"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 3
@@ -968,43 +1246,64 @@ label_settings = SubResource("LabelSettings_ki4k0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]Jetpack Fuel Cap.
 100 >> [color=green]200[/color][/center]"
 
-[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "123"
-icon = ExtResource("7_2ytqu")
+icon = ExtResource("26_l10cr")
+flat = true
 expand_icon = true
 
-[node name="ATKSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
-custom_minimum_size = Vector2(50, 100)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed"]
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JumpHeight/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer"]
+[node name="ATKSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("24_5gqsd")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/MarginContainer/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("23_cj31i")
 expand_mode = 2
 
-[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer/TextureRect"]
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/MarginContainer/HBoxContainer/TextureRect"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 3
@@ -1021,43 +1320,64 @@ label_settings = SubResource("LabelSettings_ki4k0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]ATK Speed
 1x >> [color=green]1.2x[/color][/center]"
 
-[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "123"
-icon = ExtResource("7_2ytqu")
+icon = ExtResource("26_l10cr")
+flat = true
 expand_icon = true
 
-[node name="BulletSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
-custom_minimum_size = Vector2(50, 100)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed"]
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/ATKSpeed/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer"]
+[node name="BulletSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("24_5gqsd")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/MarginContainer/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("24_pm8gn")
 expand_mode = 2
 
-[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer/TextureRect"]
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/MarginContainer/HBoxContainer/TextureRect"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 3
@@ -1074,42 +1394,63 @@ label_settings = SubResource("LabelSettings_ki4k0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]Bullet Speed
 1x >> [color=green]1.2x[/color][/center]"
 
-[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "123"
-icon = ExtResource("7_2ytqu")
+icon = ExtResource("26_l10cr")
+flat = true
 expand_icon = true
+
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/BulletSpeed/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="JPFuelCap" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
+theme_override_styles/panel = ExtResource("24_5gqsd")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("18_xg63x")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("29_s7l3c")
 expand_mode = 2
 
-[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/HBoxContainer/TextureRect"]
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/MarginContainer/HBoxContainer/TextureRect"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 3
@@ -1126,42 +1467,63 @@ label_settings = SubResource("LabelSettings_ki4k0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]Jetpack Fuel Cap.
 100 >> [color=green]200[/color][/center]"
 
-[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "123"
-icon = ExtResource("7_2ytqu")
+icon = ExtResource("26_l10cr")
+flat = true
 expand_icon = true
+
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPFuelCap/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="JPSpeed" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
+theme_override_styles/panel = ExtResource("24_5gqsd")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("19_jntit")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("33_8qva5")
 expand_mode = 2
 
-[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/HBoxContainer/TextureRect"]
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/MarginContainer/HBoxContainer/TextureRect"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 3
@@ -1178,42 +1540,63 @@ label_settings = SubResource("LabelSettings_ki4k0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]Jetpack Fuel Cap.
 100 >> [color=green]200[/color][/center]"
 
-[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "123"
-icon = ExtResource("7_2ytqu")
+icon = ExtResource("26_l10cr")
+flat = true
 expand_icon = true
+
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPSpeed/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
 
 [node name="JPRegen" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats"]
 custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
+theme_override_styles/panel = ExtResource("24_5gqsd")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("21_0gftb")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("34_dhxu4")
 expand_mode = 2
 
-[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/HBoxContainer/TextureRect"]
+[node name="LevelLabel" type="Label" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/MarginContainer/HBoxContainer/TextureRect"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 1
 anchors_preset = 3
@@ -1230,23 +1613,69 @@ label_settings = SubResource("LabelSettings_ki4k0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]Jetpack Fuel Cap.
 100 >> [color=green]200[/color][/center]"
 
-[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/HBoxContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
 text = "123"
-icon = ExtResource("7_2ytqu")
+icon = ExtResource("26_l10cr")
+flat = true
 expand_icon = true
+
+[node name="Panel" type="Panel" parent="UI/Shop/VBoxContainer/MarginContainer/ScrollContainer/ShopStats/JPRegen/MarginContainer/HBoxContainer/VBoxContainer/Button"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2inb")
+
+[node name="Balon" type="Panel" parent="UI"]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5e72a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Balon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="UI/Balon/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("33_2gc1r")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

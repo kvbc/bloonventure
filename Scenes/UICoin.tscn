@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://brv7by0ueh0hw"]
 
-[ext_resource type="Texture2D" uid="uid://dlwwo6tne67et" path="res://Assets/Image/Currency.png" id="1_af7n3"]
 [ext_resource type="Script" path="res://Scenes/UICoin.gd" id="1_hi7n7"]
+[ext_resource type="Texture2D" uid="uid://b2ktf1sgt72yi" path="res://Assets/Image/new_new/currency.png" id="2_1vv6q"]
 
 [node name="UiCoin" type="Control"]
 layout_mode = 3
@@ -9,6 +9,7 @@ anchors_preset = 0
 script = ExtResource("1_hi7n7")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -21,5 +22,5 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_af7n3")
+texture = ExtResource("2_1vv6q")
 expand_mode = 1

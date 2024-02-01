@@ -1,6 +1,7 @@
 extends Node
 
 var World: World
+var FirstPlay = true
 
 func _ready():
 	pass
@@ -15,3 +16,4 @@ func PlayAudio(stream: AudioStream, bus_name: String, ofs = 0, vol = null):
 		audio_player.volume_db = vol
 	add_child(audio_player)
 	audio_player.play(ofs)
+	return audio_player

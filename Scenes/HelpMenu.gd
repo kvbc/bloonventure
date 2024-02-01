@@ -42,8 +42,10 @@ var pages = [
 		$MarginContainer/VBoxContainer/Pages/HBoxContainer/Content/VBoxContainer/TextureRect.texture = pages[page_num - 1][1]
 
 func Show():
-	visible = true
-	get_tree().paused = true
+	if ALGlobal.FirstPlay:
+		ALGlobal.FirstPlay = false
+		visible = true
+		get_tree().paused = true
 
 func _ready():
 	Show()

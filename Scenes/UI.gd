@@ -18,6 +18,11 @@ func _ready():
 	%Shop.process_mode = Node.PROCESS_MODE_ALWAYS
 	$GameOver.process_mode = Node.PROCESS_MODE_ALWAYS
 	$GameOver.visible = false
+	$GameOver/MarginContainer/VBoxContainer/TryAgainButton.pressed.connect(func():
+		Engine.time_scale = 1
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://Scenes/World.tscn")
+	)
 	$GameOver/MarginContainer/VBoxContainer/MainMenuButton.pressed.connect(func():
 		Engine.time_scale = 1
 		get_tree().paused = false
@@ -65,6 +70,11 @@ func _process(delta):
 	else:
 		%Gun.modulate.a = 0.35
 		%Shotgun.modulate.a = 1
+		
+	var balon = ALGlobal.World.Balloon
+	var balonui = $Balon
+	balonui.visible = not balon.IsOnScreen()
+	balonui.global_position.x = balon.get_global_transform_with_canvas().get_origin().x
 	
 func _input(event):
 	if event is InputEventKey:
@@ -102,7 +112,7 @@ func AddCurrency(currency, atnode: Node2D):
 			randf_range(-50,50),
 			randf_range(-50,50)
 		)
-		coin.move_to = $Currency/MarginContainer/HBoxContainer/TextureRect.global_position + $Currency/MarginContainer/HBoxContainer/TextureRect.size / 2
+		coin.move_to = $Currency/MarginContainer/Panel/HBoxContainer/TextureRect.global_position + $Currency/MarginContainer/Panel/HBoxContainer/TextureRect.size / 2
 		coin.value = currency
 		add_child(coin)
 		await get_tree().create_timer(0.05).timeout
